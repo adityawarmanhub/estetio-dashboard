@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partnership Proposal - Estetio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --navy: #0f172a;
+            --navy-light: #1e293b;
+            --gold: #ca8a04;
+            --gold-light: #fef08a;
+            --white: #ffffff;
+            --gray-bg: #f1f5f9;
+            --text-main: #334155;
+            --text-muted: #64748b;
+            
+            /* Watermark variables */
+            --wm-bg: rgba(255, 255, 255, 0.9);
+            --wm-border: var(--navy);
+        }
+
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background: var(--gray-bg); 
+            color: var(--text-main); 
+            margin: 0; 
+            padding: 40px 20px; 
+            line-height: 1.6;
+        }
+
+        /* DOCUMENT CONTAINER */
+        .proposal-doc { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: var(--white); 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* WATERMARK STYLE */
+        .fixed-watermark {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1001;
+            opacity: 0.7;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+            border-right: 3px solid var(--gold);
+            padding-right: 15px;
+            background: var(--wm-bg);
+            padding: 10px 15px 10px 10px;
+            border-radius: 8px 0 0 8px;
+            backdrop-filter: blur(5px);
+        }
+
+        .watermark-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        .watermark-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        /* HERO SECTION */
+        .doc-header {
+            background: var(--navy);
+            color: var(--white);
+            padding: 60px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .doc-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(202, 138, 4, 0.1));
+            pointer-events: none;
+        }
+
+        .brand-tag {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin: 0 0 15px 0;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            max-width: 500px;
+        }
+
+        /* CONTENT PADDING */
+        .doc-body {
+            padding: 50px;
+        }
+
+        /* SECTION STYLING */
+        .section { margin-bottom: 50px; }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--navy);
+            border-bottom: 2px solid var(--gray-bg);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title i { color: var(--gold); }
+
+        /* SCOPE OF WORK GRID */
+        .scope-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .scope-item {
+            display: flex;
+            gap: 15px;
+        }
+
+        .scope-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gray-bg);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--navy);
+            flex-shrink: 0;
+        }
+
+        .scope-content h4 {
+            margin: 0 0 5px 0;
+            font-size: 1rem;
+            color: var(--navy);
+        }
+
+        .scope-content p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* INVESTMENT OPTIONS (Stacked) */
+        .investment-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .investment-card.recommended {
+            border: 2px solid var(--gold);
+            background: #fffbeb; /* Very light yellow tint */
+        }
+
+        .rec-badge {
+            position: absolute;
+            top: -12px;
+            right: 30px;
+            background: var(--gold);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 50px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px dashed #cbd5e1;
+            padding-bottom: 15px;
+        }
+
+        .plan-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .plan-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+        .plan-period { font-size: 0.9rem; font-weight: 400; color: var(--text-muted); font-family: 'Plus Jakarta Sans', sans-serif;}
+
+        /* EXPANDED LIST */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 2 Column features */
+            gap: 20px;
+        }
+
+        .feature-li {
+            display: flex;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .feature-icon {
+            color: var(--gold);
+            margin-top: 3px;
+        }
+
+        .feature-text strong {
+            display: block;
+            color: var(--text-main);
+            margin-bottom: 2px;
+        }
+        
+        .feature-text span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: block;
+            line-height: 1.4;
+        }
+
+        /* CTA */
+        .cta-box {
+            background: var(--navy);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .cta-btn {
+            display: inline-block;
+            background: var(--gold);
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-weight: 700;
+            margin-top: 15px;
+            transition: transform 0.2s;
+        }
+        .cta-btn:hover { transform: translateY(-2px); }
+
+        @media (max-width: 768px) {
+            .doc-header, .doc-body { padding: 30px 20px; }
+            .scope-grid, .feature-list { grid-template-columns: 1fr; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Watermark -->
+    <div class="fixed-watermark">
+        <span class="watermark-label">Prepared by</span>
+        <span class="watermark-name">Aditya</span>
+    </div>
+
+    <div class="proposal-doc">
+        
+        <!-- Header -->
+        <header class="doc-header">
+            <span class="brand-tag">ESTETIO GROWTH PARTNER</span>
+            <h1>Strategic Partnership<br>Proposal</h1>
+            <p class="subtitle">Sebuah blueprint komprehensif untuk meningkatkan akuisisi pasien klinik Anda melalui pendekatan Visual, Traffic, dan Sistem.</p>
+        </header>
+
+        <div class="doc-body">
+            
+            <!-- Section 1: Executive Summary -->
+            <section class="section">
+                <div class="section-title"><i class="ph-fill ph-target"></i> Executive Summary</div>
+                <p>
+                    Tujuan dari kemitraan ini bukan sekadar membuat postingan Instagram, melainkan membangun <strong>Sistem Akuisisi Pasien</strong> yang dapat diprediksi. Kami mengidentifikasi bahwa [Nama Klinik] memiliki potensi besar yang belum tergarap optimal karena kurangnya strategi iklan tertarget dan visual yang membangun kepercayaan (trust).
+                </p>
+            </section>
+
+            <!-- Section 2: Scope of Work -->
+            <section class="section">
+                <div class="section-title"><i class="ph-fill ph-briefcase"></i> Scope of Deliverables</div>
+                <div class="scope-grid">
+                    <div class="scope-item">
+                        <div class="scope-icon"><i class="ph-fill ph-video-camera"></i></div>
+                        <div class="scope-content">
+                            <h4>Visual Production</h4>
+                            <p>Produksi video Reels & Foto estetik dengan standar 'Beauty Lighting'. Termasuk konsep, script, shooting, dan editing.</p>
+                        </div>
+                    </div>
+                    <div class="scope-item">
+                        <div class="scope-icon"><i class="ph-fill ph-megaphone"></i></div>
+                        <div class="scope-content">
+                            <h4>Ads Management</h4>
+                            <p>Setup dan optimasi Meta Ads (IG/FB). Meliputi riset audiens, A/B testing creative, dan retargeting strategy.</p>
+                        </div>
+                    </div>
+                    <div class="scope-item">
+                        <div class="scope-icon"><i class="ph-fill ph-browser"></i></div>
+                        <div class="scope-content">
+                            <h4>Conversion System</h4>
+                            <p>Pembuatan Landing Page khusus promo dan penyusunan Script WhatsApp untuk CS agar closing rate meningkat.</p>
+                        </div>
+                    </div>
+                    <div class="scope-item">
+                        <div class="scope-icon"><i class="ph-fill ph-chart-line-up"></i></div>
+                        <div class="scope-content">
+                            <h4>Reporting & Advisory</h4>
+                            <p>Laporan performa bulanan yang transparan (Cost Per Lead, ROAS) serta sesi evaluasi strategi setiap bulan.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Investment Options -->
+            <section class="section">
+                <div class="section-title"><i class="ph-fill ph-coins"></i> Investment Options</div>
+                <p style="margin-bottom: 20px; font-size: 0.9rem; color: var(--text-muted);">Pilih model kerjasama yang paling sesuai dengan target pertumbuhan Anda bulan ini.</p>
+
+                <!-- Plan 1: Essential -->
+                <div class="investment-card">
+                    <div class="card-header">
+                        <div class="plan-name">The Essential</div>
+                        <div class="plan-price">Rp 10.000.000<span class="plan-period">/bln</span></div>
+                    </div>
+                    <ul class="feature-list">
+                        <li class="feature-li">
+                            <i class="ph-bold ph-check feature-icon"></i>
+                            <div class="feature-text">
+                                <strong>4 Video Reels + Foto</strong>
+                                <span>1x Visit Shooting. Fokus konten hard-selling/promo.</span>
+                            </div>
+                        </li>
+                        <li class="feature-li">
+                            <i class="ph-bold ph-check feature-icon"></i>
+                            <div class="feature-text">
+                                <strong>Basic Ads Management</strong>
+                                <span>Menargetkan audiens baru (Cold Traffic) di radius klinik.</span>
+                            </div>
+                        </li>
+                        <li class="feature-li">
+                            <i class="ph-bold ph-check feature-icon"></i>
+                            <div class="feature-text">
+                                <strong>Monthly Report</strong>
+                                <span>Laporan PDF sederhana dikirim via email.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Plan 2: Growth (Recommended) -->
+                <div class="investment-card recommended">
+                    <div class="rec-badge">MOST POPULAR</div>
+                    <div class="card-header">
+                        <div class="plan-name">The Growth Accelerator</div>
+                        <div class="plan-price">Rp 18.000.000<span class="plan-period">/bln</span></div>
+                    </div>
+                    <ul class="feature-list">
+                        <li class="feature-li">
+                            <i class="ph-fill ph-star feature-icon"></i>
+                            <div class="feature-text">
+                                <strong>8 Video Reels (2x/minggu)</strong>
+                                <span>Frekuensi ideal algoritma. Campuran konten Edukasi & Promo.</span>
+                            </div>
+                        </li>
+                        <li class="feature-li">
+                            <i class="ph-fill ph-star feature-icon"></i>
+                            <div class="feature-text">
+                                <strong>Advanced Retargeting Ads</strong>
+                                <span>Iklan "menghantui" orang yang sudah klik tapi belum booking.</span>
+                            </div>
+                        </li>
+                        <li class="feature-li">
+                            <i class="ph-fill ph-star feature-icon"></i>
+                            <div class="feature-text">
+                                <strong>1 Promo Landing Page</strong>
+                                <span>Halaman web khusus penawaran agar terlihat profesional.</span>
+                            </div>
+                        </li>
+                        <li class="feature-li">
+                            <i class="ph-fill ph-star feature-icon"></i>
+                            <div class="feature-text">
+                                <strong>CS Evaluation</strong>
+                                <span>Audit chat admin bulanan untuk memperbaiki cara jawab.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Plan 3: Dominate -->
+                <div class="investment-card">
+                    <div class="card-header">
+                        <div class="plan-name">The Market Dominator</div>
+                        <div class="plan-price">Rp 30.000.000<span class="plan-period">/bln</span></div>
+                    </div>
+                    <ul class="feature-list">
+                        <li class="feature-li">
+                            <i class="ph-bold ph-check feature-icon"></i>
+                            <div class="feature-text">
+                                <strong>12 Video Reels + TikTok</strong>
+                                <span>Dominasi feed setiap hari. Termasuk edit format TikTok.</span>
+                            </div>
+                        </li>
+                        <li class="feature-li">
+                            <i class="ph-bold ph-check feature-icon"></i>
+                            <div class="feature-text">
+                                <strong>Multi-Platform Ads</strong>
+                                <span>Iklan jalan di Meta (IG/FB) dan TikTok Ads sekaligus.</span>
+                            </div>
+                        </li>
+                        <li class="feature-li">
+                            <i class="ph-bold ph-check feature-icon"></i>
+                            <div class="feature-text">
+                                <strong>2 Micro-Influencer Visits</strong>
+                                <span>Kami datangkan influencer lokal untuk review (Social Proof).</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </section>
+
+            <!-- CTA -->
+            <div class="cta-box">
+                <h3 style="margin-top: 0; font-family: 'Playfair Display';">Siap untuk Bertumbuh?</h3>
+                <p>Mari jadwalkan sesi onboarding untuk memulai strategi ini.</p>
+                <a href="#" class="cta-btn">Approve Proposal & Start</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

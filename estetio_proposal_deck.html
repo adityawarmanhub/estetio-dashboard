@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal Kerjasama - Estetio Beta Program</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --navy: #0f172a;
+            --gold: #ca8a04;
+            --gold-light: #fde047;
+            --white: #f8fafc;
+            --text-grey: #94a3b8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--navy);
+            color: var(--white);
+            line-height: 1.6;
+            max-width: 480px; /* Mobile width optimization */
+            margin: 0 auto;
+            border-left: 1px solid #1e293b;
+            border-right: 1px solid #1e293b;
+        }
+
+        /* WATERMARK STYLE */
+        .fixed-watermark {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1001;
+            opacity: 0.5;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+            border-right: 3px solid var(--gold);
+            padding-right: 15px;
+        }
+
+        .watermark-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-grey);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .watermark-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        /* PAGE 1: COVER */
+        .page {
+            padding: 60px 30px;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: 1px solid #1e293b;
+            position: relative;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .logo span { 
+            color: var(--gold);
+            font-size: 0.6em;
+            letter-spacing: 2px;
+            margin-left: 5px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            vertical-align: middle;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(202, 138, 4, 0.15);
+            color: var(--gold);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            border: 1px solid var(--gold);
+        }
+
+        /* PAGE 2: PROBLEM */
+        .problem-box {
+            background: rgba(255,255,255,0.03);
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border-left: 4px solid #ef4444;
+        }
+        
+        /* PAGE 3: SOLUTION */
+        .method-step {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .step-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            line-height: 1;
+            min-width: 40px;
+        }
+
+        /* PAGE 4: THE OFFER */
+        .offer-card {
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            border: 1px solid var(--gold);
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 10px 30px -5px rgba(202, 138, 4, 0.2);
+        }
+
+        .price-strike {
+            text-decoration: line-through;
+            color: var(--text-grey);
+            font-size: 1rem;
+        }
+        
+        .price-free {
+            color: var(--gold-light);
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            margin: 10px 0;
+        }
+
+        /* CHECKLIST */
+        ul { list-style: none; margin-top: 20px; }
+        li { margin-bottom: 12px; display: flex; align-items: start; gap: 10px; font-size: 0.95rem; color: #cbd5e1; }
+        .check { color: var(--gold); font-weight: bold; }
+
+        /* CTA BUTTON */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: var(--gold);
+            color: #000;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            margin-top: 30px;
+            font-size: 1.1rem;
+            transition: transform 0.2s;
+        }
+        .btn:active { transform: scale(0.98); }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.8rem;
+            color: var(--text-grey);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Watermark -->
+    <div class="fixed-watermark">
+        <span class="watermark-label">Prepared by</span>
+        <span class="watermark-name">Aditya</span>
+    </div>
+
+    <!-- PAGE 1: COVER -->
+    <div class="page">
+        <div class="logo">ESTETIO<span>GROWTH</span></div>
+        <span class="tag">Q1 2024 PARTNERSHIP</span>
+        <h1>Patient Acquisition Proposal</h1>
+        <p style="color: var(--text-grey); font-size: 1.1rem;">
+            Strategi Khusus untuk Meningkatkan Booking Pasien High-Ticket di Klinik Kecantikan.
+        </p>
+        <div style="margin-top: 40px; border-top: 1px solid #334155; padding-top: 20px;">
+            <p style="font-size: 0.9rem;">Prepared Exclusively for:</p>
+            <p style="font-size: 1.2rem; font-weight: 600; color: var(--white);">[Nama Klinik Partner]</p>
+        </div>
+        <div style="margin-top: auto; text-align: center; opacity: 0.5; font-size: 0.8rem;">
+            Scroll ke bawah untuk detail
+            <br>↓
+        </div>
+    </div>
+
+    <!-- PAGE 2: PROBLEM -->
+    <div class="page">
+        <h2 style="font-family: 'Playfair Display'; font-size: 2rem; margin-bottom: 20px;">The "Silent" Killer</h2>
+        <p>Banyak klinik memiliki alat canggih & dokter ahli, namun <strong>kalah omzet</strong> dari kompetitor yang "lebih jago marketing".</p>
+        
+        <div class="problem-box">
+            <h3 style="color: #fca5a5; margin-bottom: 15px;">3 Diagnosa Masalah:</h3>
+            <ul>
+                <li style="margin-bottom: 15px;">
+                    <div style="min-width: 25px;"><span style="color:#ef4444; font-weight:bold;">01.</span></div>
+                    <div>
+                        <strong style="color: white;">The Price War Trap</strong><br>
+                        Capek meladeni chat <em>"Berapa harganya?"</em> lalu menghilang (Ghosting)? Ini terjadi karena iklan Anda menarik "Pencari Murah", bukan "Pasien Loyal".
+                    </div>
+                </li>
+                <li style="margin-bottom: 15px;">
+                    <div style="min-width: 25px;"><span style="color:#ef4444; font-weight:bold;">02.</span></div>
+                    <div>
+                        <strong style="color: white;">The Trust Gap</strong><br>
+                        Klinik aslinya mewah, tapi di Instagram terlihat gelap/biasa saja. Pasien ragu menyerahkan wajahnya karena visual online Anda tidak terlihat "Steril & Premium".
+                    </div>
+                </li>
+                <li style="margin-bottom: 5px;">
+                    <div style="min-width: 25px;"><span style="color:#ef4444; font-weight:bold;">03.</span></div>
+                    <div>
+                        <strong style="color: white;">The Leaking Bucket</strong><br>
+                        Traffic masuk, tapi Admin CS bingung cara <em>closing</em>. Akibatnya, budget iklan terbuang percuma tanpa jadi booking.
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- PAGE 3: METHOD -->
+    <div class="page">
+        <h2 style="font-family: 'Playfair Display'; font-size: 2rem; margin-bottom: 10px;">The Estetio Method™</h2>
+        <p style="color: var(--text-grey); margin-bottom: 30px;">Sebuah ekosistem, bukan sekadar postingan.</p>
+        
+        <div class="method-step">
+            <div class="step-num">01</div>
+            <div>
+                <h3 style="color: var(--gold);">High-Affluence Targeting</h3>
+                <p style="font-size: 0.9rem; color: #cbd5e1;">
+                    <i class="ph-bold ph-arrow-elbow-down-right" style="color:var(--gold)"></i> <em>Solusi untuk "Price War":</em><br>
+                    Kami memfilter audiens di level iklan. Kami menargetkan <strong>Profil Pasien Ideal</strong> (berdasarkan minat <em>Luxury & Wellness</em>) di radius klinik Anda. Kami mencari kualitas daya beli, bukan sekadar kuantitas.
+                </p>
+            </div>
+        </div>
+
+        <div class="method-step">
+            <div class="step-num">02</div>
+            <div>
+                <h3 style="color: var(--gold);">Clinical Trust Visuals</h3>
+                <p style="font-size: 0.9rem; color: #cbd5e1;">
+                    <i class="ph-bold ph-arrow-elbow-down-right" style="color:var(--gold)"></i> <em>Solusi untuk "Trust Gap":</em><br>
+                    Video & Foto dengan standar <em>Aesthetic Lighting</em>. <strong>Hasil treatment terlihat nyata</strong>, ambience terlihat higienis, dan dokter terlihat ahli. Visual ini memancarkan aura 'Aman & Premium' tanpa perlu banyak bicara.
+                </p>
+            </div>
+        </div>
+
+        <div class="method-step">
+            <div class="step-num">03</div>
+            <div>
+                <h3 style="color: var(--gold);">Conversion Ecosystem</h3>
+                <p style="font-size: 0.9rem; color: #cbd5e1;">
+                    <i class="ph-bold ph-arrow-elbow-down-right" style="color:var(--gold)"></i> <em>Solusi untuk "Leaking Bucket":</em><br>
+                    Kami siapkan Landing Page Penawaran (untuk edukasi awal) + <strong>Script WhatsApp Anti-Ghosting</strong> untuk Admin Anda. Kami bantu sampai level closing.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 4: OFFER -->
+    <div class="page">
+        <div class="offer-card">
+            <span class="tag" style="background: white; color: var(--navy); border: none;">EXCLUSIVE BETA PROGRAM</span>
+            <h2 style="margin: 20px 0 10px; font-family: 'Playfair Display';">Full Service Agency</h2>
+            <p style="font-size: 0.9rem; color: #94a3b8;">Video Production + Ads Management + Strategy</p>
+            
+            <div style="margin: 30px 0;">
+                <div class="price-strike">Normal: Rp 15.000.000</div>
+                <div class="price-free">GRATIS JASA*</div>
+                <p style="font-size: 0.8rem; color: var(--gold);">*Khusus Bulan Pertama (Pilot Project)</p>
+            </div>
+
+            <p style="font-size: 0.9rem; line-height: 1.4;">
+                Kami sedang membangun portofolio studi kasus 2024. Kami akan bekerja <strong>Cuma-Cuma</strong> untuk klinik Anda, dengan syarat:
+            </p>
+
+            <ul style="text-align: left; margin-top: 25px;">
+                <li><i class="ph-fill ph-check-circle check"></i> Anda menanggung Budget Iklan (Min. Rp 3 Juta).</li>
+                <li><i class="ph-fill ph-check-circle check"></i> Memberikan akses data penjualan untuk laporan.</li>
+                <li><i class="ph-fill ph-check-circle check"></i> Memberikan Testimoni Video jika target tercapai.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- PAGE 5: CTA & FOOTER -->
+    <div class="page" style="min-height: 60vh; text-align: center;">
+        <h2 style="font-family: 'Playfair Display'; margin-bottom: 20px;">Ready to Grow?</h2>
+        <p style="color: #cbd5e1;">Slot Beta Program ini sangat terbatas (Hanya 1 Klinik per area) untuk menjaga kualitas fokus tim kami.</p>
+        
+        <a href="https://wa.me/6281234567890?text=Halo%20Estetio,%20saya%20tertarik%20diskusi%20tentang%20Beta%20Program%20untuk%20klinik%20saya." class="btn">
+            Ambil Slot Beta Program <i class="ph-bold ph-arrow-right"></i>
+        </a>
+        
+        <p style="margin-top: 20px; font-size: 0.8rem; color: var(--text-grey);">
+            Atau reply pesan ini untuk jadwalkan Zoom Call 15 menit.
+        </p>
+
+        <div class="footer">
+            &copy; 2024 Estetio Agency.<br>Jakarta, Indonesia.
+        </div>
+    </div>
+
+</body>
+</html>

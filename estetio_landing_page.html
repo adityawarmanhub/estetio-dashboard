@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estetio | Aesthetic Growth Partner</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        :root {
+            /* Color Palette */
+            --primary: #0f172a;   /* Navy Blue Gelap - Trust */
+            --secondary: #f8fafc; /* Putih Klinis - Clean */
+            --accent: #ca8a04;    /* Muted Gold - Premium */
+            --text-dark: #1e293b;
+            --text-light: #94a3b8;
+            --white: #ffffff;
+            
+            --padding-section: 80px 20px;
+            --max-width: 1200px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--secondary);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* WATERMARK STYLE (Added for Consistency) */
+        .fixed-watermark {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1001;
+            opacity: 0.6;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+            border-right: 3px solid var(--accent);
+            padding-right: 15px;
+            background: rgba(255, 255, 255, 0.8); /* Background tipis agar terbaca */
+            padding: 10px 15px 10px 10px;
+            border-radius: 8px 0 0 8px;
+            backdrop-filter: blur(5px);
+        }
+
+        .watermark-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .watermark-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* BUTTON STYLES */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+            border: 1px solid var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #ca8a04 0%, #eab308 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(202, 138, 4, 0.3);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(202, 138, 4, 0.4);
+        }
+
+        /* NAVBAR */
+        nav {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 20px 0;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Updated Logo Tagline Style */
+        .logo span { 
+            color: var(--accent);
+            font-size: 0.5em; /* Smaller tagline */
+            letter-spacing: 3px;
+            vertical-align: middle;
+            margin-left: 5px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 160px 20px 100px;
+            text-align: center;
+            background: radial-gradient(circle at 50% 50%, #f1f5f9 0%, #ffffff 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            color: var(--accent);
+            background: rgba(202, 138, 4, 0.1);
+            padding: 6px 16px;
+            border-radius: 50px;
+        }
+
+        /* PROBLEM SECTION */
+        .problem {
+            background-color: var(--white);
+            padding: var(--padding-section);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 { font-size: 2.5rem; margin-bottom: 15px; }
+        .section-header p { color: var(--text-light); }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            padding: 30px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        
+        .card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        
+        .card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .card h3 { font-size: 1.25rem; margin-bottom: 10px; }
+        .card p { font-size: 0.95rem; color: #64748b; }
+
+        /* SOLUTION SECTION */
+        .solution {
+            padding: var(--padding-section);
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .solution h2 { color: var(--white); }
+        .solution p { color: #cbd5e1; }
+
+        .method-box {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .method-steps {
+            flex: 1;
+        }
+
+        .step {
+            margin-bottom: 30px;
+            padding-left: 20px;
+            border-left: 3px solid rgba(255,255,255,0.1);
+        }
+        
+        .step.active { border-color: var(--accent); }
+        
+        .step h3 { font-family: 'Inter', sans-serif; font-size: 1.1rem; color: var(--accent); margin-bottom: 5px; }
+        .step h4 { font-size: 1.5rem; color: var(--white); margin-bottom: 10px; }
+
+        .method-image {
+            flex: 1;
+            background: #1e293b;
+            height: 400px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            overflow: hidden; /* Pastikan gambar tidak keluar dari border radius */
+        }
+
+        /* FOUNDER SECTION */
+        .founders {
+            padding: var(--padding-section);
+            background-color: var(--secondary);
+        }
+
+        .founder-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .founder-card {
+            background: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .founder-img {
+            width: 100px;
+            height: 100px;
+            background-color: #e2e8f0;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            object-fit: cover;
+        }
+
+        .founder-role {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        /* CTA / OFFER SECTION */
+        .cta-section {
+            background: #fff;
+            padding: 80px 20px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .offer-box {
+            background: linear-gradient(to right, #0f172a, #1e293b);
+            color: white;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 50px;
+        }
+
+        .offer-box h2 { color: white; margin-bottom: 15px; }
+        
+        /* FOOTER */
+        footer {
+            background-color: var(--primary);
+            color: #64748b;
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        /* Tambahkan style khusus untuk logo di dalam footer */
+        footer .logo {
+            color: var(--white); /* Mengubah warna logo menjadi putih khusus di footer */
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .method-box { flex-direction: column; }
+            .founder-grid { grid-template-columns: 1fr; }
+            .offer-box { padding: 40px 20px; }
+            
+            .fixed-watermark {
+                bottom: 15px;
+                right: 15px;
+                background: rgba(255,255,255,0.9);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Watermark (Added) -->
+    <div class="fixed-watermark">
+        <span class="watermark-label">Prepared by</span>
+        <span class="watermark-name">Aditya</span>
+    </div>
+
+    <nav>
+        <div class="container nav-content">
+            <div class="logo">
+                <i class="ph ph-sparkle"></i> ESTETIO<span>GROWTH</span>
+            </div>
+            <div>
+                <a href="#offer" class="btn btn-primary">Free Audit</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-tags">
+                <span class="tag">Data Driven</span>
+                <span class="tag">Visual Focused</span>
+                <span class="tag">Clinic Specialist</span>
+            </div>
+            <h1>Ubah Followers Instagram Klinik<br>Menjadi Pasien Real.</h1>
+            <p>Berhenti membuang budget iklan untuk "Likes". Kami membantu Klinik Kecantikan & Estetika mendapatkan booking pasien yang terukur dengan sistem <strong>Estetio Growth Method™</strong>.</p>
+            
+            <div style="margin-top: 40px;">
+                <a href="#offer" class="btn btn-gold">Lihat Penawaran Beta Program</a>
+                <p style="font-size: 0.85rem; margin-top: 15px; color: #94a3b8;">*Hanya menerima 1 Klinik per Area (Eksklusif)</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="problem">
+        <div class="container">
+            <div class="section-header">
+                <h2>Mengapa Klinik Anda "Sepi" di Online?</h2>
+                <p>Meskipun tempat Anda bagus dan alat canggih, 3 masalah ini sering terjadi.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <!-- Mengganti icon yang broken dengan Chart Line Down -->
+                    <i class="ph ph-chart-line-down"></i>
+                    <h3>Iklan Boncos</h3>
+                    <p>Anda menghabiskan jutaan untuk Ads, tapi yang masuk hanya chat "Harga berapa?" lalu menghilang (Ghosting).</p>
+                </div>
+                <div class="card">
+                    <i class="ph ph-image-broken"></i>
+                    <h3>Visual Kurang "Trust"</h3>
+                    <p>Video treatment terlihat gelap, kulit pasien tidak glowing, atau desain feed terlihat seperti template Canva murahan.</p>
+                </div>
+                <div class="card">
+                    <i class="ph ph-clock"></i>
+                    <h3>Admin Kewalahan</h3>
+                    <p>Leads masuk tapi admin lambat membalas atau tidak punya script closing yang persuasif, sehingga pasien lari ke kompetitor.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="solution">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Estetio Method™</h2>
+                <p>Kami tidak sekadar posting gambar. Kami membangun ekosistem.</p>
+            </div>
+
+            <div class="method-box">
+                <div class="method-steps">
+                    <div class="step active">
+                        <h3>Langkah 1: Trust</h3>
+                        <h4>High-End Visual Production</h4>
+                        <p>Kami memproduksi video Reels & Foto dengan standar *beauty lighting*. Kulit terlihat bersih, ambience klinik terlihat mewah. Ini membangun kepercayaan instan.</p>
+                    </div>
+                    <div class="step">
+                        <h3>Langkah 2: Traffic</h3>
+                        <h4>Targeted Patient Ads</h4>
+                        <p>Kami menargetkan wanita spesifik di radius 10km dari klinik Anda yang memiliki daya beli untuk treatment High-Ticket.</p>
+                    </div>
+                    <div class="step">
+                        <h3>Langkah 3: Convert</h3>
+                        <h4>System & Scripting</h4>
+                        <p>Kami menyediakan Landing Page khusus promo & Script WhatsApp untuk Admin Anda agar closing rate meningkat.</p>
+                    </div>
+                </div>
+                
+                <div class="method-image">
+                    <!-- Placeholder untuk gambar Chart -->
+                    <img src="https://placehold.co/600x400/1e293b/ca8a04?text=Growth+Chart+Visual" alt="Grafik Pertumbuhan Klinik Estetio" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="founders">
+        <div class="container">
+            <div class="section-header">
+                <h2>Meet The Strategists</h2>
+                <p>Tim di balik layar pertumbuhan klinik Anda.</p>
+            </div>
+
+            <div class="founder-grid">
+                <div class="founder-card">
+                    <img src="https://ui-avatars.com/api/?name=Aditya+W&background=0f172a&color=fff" alt="Founder" class="founder-img">
+                    <div class="founder-role">Business Strategist</div>
+                    <h3>Aditya Warman</h3>
+                    <p style="font-size: 0.9rem; margin-top: 10px; color: #64748b;">
+                        10+ Tahun pengalaman operasional & manajemen. Fokus pada efisiensi sistem bisnis klinik.
+                    </p>
+                </div>
+
+                <div class="founder-card">
+                    <img src="https://ui-avatars.com/api/?name=Partner+2&background=0f172a&color=fff" alt="Founder" class="founder-img">
+                    <div class="founder-role">Creative Director</div>
+                    <h3>[Nama Partner Visual]</h3>
+                    <p style="font-size: 0.9rem; margin-top: 10px; color: #64748b;">
+                        Spesialis Estetika Visual. Memastikan setiap shot video membuat pasien ingin treatment.
+                    </p>
+                </div>
+
+                <div class="founder-card">
+                    <img src="https://ui-avatars.com/api/?name=Partner+3&background=0f172a&color=fff" alt="Founder" class="founder-img">
+                    <div class="founder-role">Tech & Ads Lead</div>
+                    <h3>[Nama Partner Tech]</h3>
+                    <p style="font-size: 0.9rem; margin-top: 10px; color: #64748b;">
+                        Ahli Meta Ads & Web Conversion. Fokus mendatangkan leads berkualitas tinggi.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="offer">
+        <div class="container">
+            <div class="offer-box">
+                <div class="offer-badge">BETA PROGRAM Q1 2024</div>
+                <h2>Cari Partner Pilot Project (Free Service Fee)</h2>
+                <p style="color: #cbd5e1; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Kami sedang membangun portofolio studi kasus baru. Kami akan menangani visual & ads klinik Anda <strong>GRATIS Biaya Jasa Agensi</strong> untuk bulan pertama.
+                </p>
+                
+                <ul style="text-align: left; max-width: 500px; margin: 0 auto 30px; color: #cbd5e1;">
+                    <li style="margin-bottom: 10px;"><i class="ph ph-check" style="color: var(--accent); margin-right: 10px;"></i> Anda hanya menanggung Budget Iklan (Ads Spend).</li>
+                    <li style="margin-bottom: 10px;"><i class="ph ph-check" style="color: var(--accent); margin-right: 10px;"></i> Mendapatkan 4 Video Reels Premium & Foto.</li>
+                    <li style="margin-bottom: 10px;"><i class="ph ph-check" style="color: var(--accent); margin-right: 10px;"></i> Setup Iklan & Landing Page Gratis.</li>
+                </ul>
+
+                <a href="https://wa.me/" target="_blank" class="btn btn-gold">
+                    <i class="ph ph-whatsapp-logo" style="margin-right: 5px;"></i> Chat Founder via WhatsApp
+                </a>
+                <p style="font-size: 0.8rem; margin-top: 15px; opacity: 0.6;">Terbatas untuk 3 Klinik pendaftar pertama.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="logo" style="justify-content: center; margin-bottom: 20px;">
+                <i class="ph ph-sparkle"></i> ESTETIO<span>GROWTH</span>
+            </div>
+            <p>&copy; 2024 Estetio Agency. All Rights Reserved.</p>
+            <p style="font-size: 0.8rem; margin-top: 10px;">Jakarta, Indonesia.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

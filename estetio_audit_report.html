@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Audit Report - Estetio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --text: #f8fafc;
+            --accent: #ca8a04;
+            --danger: #ef4444;
+            --success: #10b981;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); overflow: hidden; height: 100vh; }
+        
+        /* WATERMARK STYLE */
+        .fixed-watermark {
+            position: fixed;
+            bottom: 30px;
+            left: 30px; /* Placed left to avoid nav buttons */
+            z-index: 1001;
+            opacity: 0.5;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            border-left: 3px solid var(--accent);
+            padding-left: 15px;
+        }
+
+        .watermark-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #94a3b8;
+        }
+
+        .watermark-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .slide {
+            display: none;
+            height: 100vh;
+            padding: 60px 100px;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .slide.active { display: flex; animation: fadeIn 0.5s; }
+        
+        h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 20px; line-height: 1.2; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--accent); margin-bottom: 30px; }
+        p { font-size: 1.2rem; color: #94a3b8; max-width: 800px; line-height: 1.6; }
+        
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 30px; }
+        
+        .evidence-box {
+            border: 2px dashed #334155;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #64748b;
+            position: relative;
+        }
+        
+        .stat-card {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 5px solid var(--accent);
+        }
+        .stat-val { font-size: 2.5rem; font-weight: bold; color: var(--text); }
+        .stat-label { color: #94a3b8; font-size: 1rem; }
+
+        .tag { background: var(--accent); color: white; padding: 5px 15px; border-radius: 50px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
+
+        .nav { 
+            position: fixed; 
+            bottom: 30px; 
+            right: 30px; 
+            display: flex; 
+            gap: 20px; 
+            z-index: 2000; /* Menambahkan Z-Index tinggi */
+        }
+        .btn { 
+            background: #334155; 
+            color: white; 
+            border: 1px solid rgba(255,255,255,0.1); /* Tambah border halus */
+            padding: 12px 24px; /* Area sentuh lebih besar */
+            cursor: pointer; 
+            border-radius: 8px; 
+            font-weight: bold; 
+            transition: background 0.3s; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .btn:hover { background: var(--accent); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .slide { padding: 40px 20px; }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            .grid { grid-template-columns: 1fr; gap: 20px; }
+            
+            /* Penyesuaian Navigasi Mobile */
+            .nav { bottom: 20px; right: 20px; width: auto; } 
+            .fixed-watermark { display: none; } 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Watermark -->
+    <div class="fixed-watermark">
+        <span class="watermark-label">Prepared by</span>
+        <span class="watermark-name">Aditya</span>
+    </div>
+
+    <div class="slide active">
+        <div style="margin-bottom: 20px;"><span class="tag">CONFIDENTIAL AUDIT</span></div>
+        <h1>Digital Health Check:<br>[Nama Klinik Target]</h1>
+        <p>Analisa performa Visual, Traffic, dan Konversi berdasarkan data publik Q1 2026.</p>
+        <div style="margin-top: 50px; border-top: 1px solid #334155; padding-top: 20px; display: flex; align-items: center; gap: 15px;">
+            <div style="width: 50px; height: 50px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: serif; color: #000;">E</div>
+            <div>
+                <div style="font-weight: bold;">Estetio Agency</div>
+                <div style="font-size: 0.9rem; color: #64748b;">Growth Partner Audit Team</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>Tujuan Sesi Ini (15 Menit)</h2>
+        <p>Kami tidak di sini untuk "menjual". Kami di sini untuk membedah <strong>3 Sumbatan Utama</strong> yang membuat omzet klinik Anda tertahan, meskipun kliniknya bagus.</p>
+        <div class="grid">
+            <div class="stat-card">
+                <div class="stat-val">1. Visual</div>
+                <div class="stat-label">Apakah "Trust Gap" menghambat pasien baru?</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-val">2. Traffic</div>
+                <div class="stat-label">Apakah Anda "Invisible" di radar calon pasien?</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-val">3. Konversi</div>
+                <div class="stat-label">Apakah ada "Leaking Bucket" di admin?</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>1. The Visual Diagnosis</h2>
+        <p>Pasien estetika membeli dengan mata. Visual gelap = Persepsi "Klinik Murah".</p>
+        
+        <div class="grid">
+            <div class="evidence-box">
+                <i class="ph ph-instagram-logo" style="font-size: 3rem; margin-bottom: 10px;"></i>
+                <strong>[SCREENSHOT IG KLINIK ANDA]</strong>
+                <p style="font-size: 0.8rem; margin-top: 10px; color: var(--danger);">Masalah: Lighting Redup, Wajah Dokter Minim.</p>
+            </div>
+            <div class="evidence-box" style="border-color: var(--success); background: rgba(16, 185, 129, 0.05);">
+                <i class="ph ph-check-circle" style="font-size: 3rem; margin-bottom: 10px; color: var(--success);"></i>
+                <strong>[STANDAR ESTETIO]</strong>
+                <p style="font-size: 0.8rem; margin-top: 10px; color: var(--success);">Goal: Bright, Clean, Glowing Skin.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>2. The Traffic Diagnosis</h2>
+        <p>Apakah klinik Anda menjemput bola, atau menunggu bola?</p>
+        
+        <div class="evidence-box" style="height: 400px; border-color: var(--danger);">
+            <i class="ph ph-warning" style="font-size: 4rem; color: var(--danger); margin-bottom: 20px;"></i>
+            <h3>STATUS: INACTIVE / NOT OPTIMIZED</h3>
+            <p style="margin-top: 10px;">Data Meta Ads Library menunjukkan tidak ada iklan aktif.</p>
+            <div style="background: #334155; padding: 10px 20px; border-radius: 8px; margin-top: 20px; font-size: 0.9rem;">
+                Potensi Hilang: <strong>~15.000 Wanita</strong> (Interest: Luxury Goods) di Radius 5KM.
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>3. The Leaking Bucket (Admin)</h2>
+        <p>Traffic mahal percuma jika Admin lambat merespon.</p>
+        
+        <div class="grid">
+            <div class="stat-card" style="border-left-color: var(--danger);">
+                <div class="stat-label">Waktu Respon Chat</div>
+                <div class="stat-val" style="color: var(--danger);">[X] Jam</div>
+                <div style="font-size: 0.8rem; margin-top: 5px;">(Standar Industri: < 15 Menit)</div>
+            </div>
+            <div class="evidence-box">
+                <i class="ph ph-whatsapp-logo" style="font-size: 3rem; margin-bottom: 10px;"></i>
+                <strong>[SCREENSHOT CHAT ADMIN]</strong>
+                <p style="font-size: 0.8rem; margin-top: 10px;">Bukti Mystery Shopper Tgl [X]</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <h2>The Estetio Prescription</h2>
+        <p>Kami memperbaiki 3 organ vital tersebut secara bersamaan.</p>
+        
+        <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 20px;">
+            <div style="display: flex; gap: 20px; align-items: center; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 8px;">
+                <div style="background: var(--accent); color: black; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold;">1</div>
+                <div><strong>Visual:</strong> Produksi Video Treatment "Cinematic" (Trust Booster).</div>
+            </div>
+            <div style="display: flex; gap: 20px; align-items: center; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 8px;">
+                <div style="background: var(--accent); color: black; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold;">2</div>
+                <div><strong>Traffic:</strong> Menjalankan Iklan Tertarget ke Profil Pasien Premium (High Buying Power).</div>
+            </div>
+            <div style="display: flex; gap: 20px; align-items: center; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 8px;">
+                <div style="background: var(--accent); color: black; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold;">3</div>
+                <div><strong>System:</strong> Landing Page Promo + Script CS Anti-Ghosting.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div style="text-align: center;">
+            <span class="tag" style="background: white; color: var(--bg);">BETA PARTNER PROGRAM</span>
+            <h2 style="margin-top: 20px; font-size: 3rem; color: var(--text);">Risk-Free Partnership</h2>
+            <p style="margin: 0 auto;">Kami ingin menjadikan Klinik Anda sebagai Success Story 2026 kami.</p>
+            
+            <div style="margin-top: 50px; background: linear-gradient(145deg, #1e293b, #0f172a); border: 1px solid var(--accent); padding: 40px; border-radius: 20px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <div style="font-size: 1.5rem; text-decoration: line-through; color: #64748b;">Biaya Jasa: Rp 15.000.000</div>
+                <div style="font-size: 3.5rem; font-weight: bold; color: var(--accent); margin: 10px 0;">GRATIS*</div>
+                <p style="font-size: 0.9rem;">*Khusus Bulan 1 (Pilot Project)</p>
+                
+                <div style="text-align: left; margin-top: 30px; font-size: 1rem; color: #cbd5e1;">
+                    ✅ Kami handle Video, Iklan, dan Web.<br>
+                    ✅ Dokter cukup tanggung <strong>Budget Iklan (Ads Spend)</strong>.<br>
+                    ✅ Jika sukses, lanjut kontrak profesional di Bulan 2.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="nav">
+        <button class="btn" onclick="prevSlide()">← Prev</button>
+        <button class="btn" onclick="nextSlide()">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(n) {
+            slides.forEach(s => s.classList.remove('active'));
+            slides[n].classList.add('active');
+        }
+
+        function nextSlide() {
+            if(currentSlide < slides.length - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function prevSlide() {
+            if(currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+        
+        // Keyboard Nav
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+    </script>
+</body>
+</html>

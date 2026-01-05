@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOP Audit Akuisisi - Estetio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --navy: #0f172a; 
+            --text: #334155; 
+            --border: #e2e8f0; 
+            --gold: #ca8a04;
+        }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: #f1f5f9; 
+            color: var(--text); 
+            padding: 40px 20px; 
+            line-height: 1.6; 
+        }
+
+        .doc-container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: white; 
+            padding: 60px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05); 
+            position: relative;
+        }
+        
+        /* WATERMARK STYLE */
+        .fixed-watermark {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1001;
+            opacity: 0.6;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+            border-right: 3px solid var(--navy);
+            padding-right: 15px;
+            background: rgba(255,255,255,0.8);
+            padding: 10px;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .watermark-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #64748b;
+        }
+
+        .watermark-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+        
+        /* Header Doc */
+        .doc-header { 
+            border-bottom: 2px solid var(--navy); 
+            padding-bottom: 20px; 
+            margin-bottom: 40px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-end; 
+        }
+        .doc-title { 
+            font-size: 1.5rem; 
+            font-weight: 800; 
+            color: var(--navy); 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+        }
+        .doc-meta { 
+            text-align: right; 
+            font-size: 0.85rem; 
+            color: #64748b; 
+        }
+        
+        h2 { 
+            font-size: 1.2rem; 
+            background: #f8fafc; 
+            padding: 10px; 
+            border-left: 5px solid var(--navy); 
+            margin-top: 40px; 
+            color: var(--navy); 
+        }
+        h3 { 
+            font-size: 1rem; 
+            color: var(--navy); 
+            margin-top: 25px; 
+            font-weight: 700; 
+        }
+        
+        ul { margin-left: 20px; }
+        li { margin-bottom: 8px; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.9rem; }
+        th, td { border: 1px solid var(--border); padding: 12px; text-align: left; }
+        th { background: var(--navy); color: white; }
+        
+        .status-badge { padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; color: white; display: inline-block; }
+        .red { background: #ef4444; } .yellow { background: #eab308; } .green { background: #10b981; }
+
+        @media (max-width: 600px) { 
+            .doc-container { padding: 20px; } 
+            .doc-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .doc-meta { text-align: left; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Watermark -->
+    <div class="fixed-watermark">
+        <span class="watermark-label">Prepared by</span>
+        <span class="watermark-name">Aditya</span>
+    </div>
+
+<div class="doc-container">
+    <div class="doc-header">
+        <div class="doc-title">SOP: Audit & Diagnosa</div>
+        <div class="doc-meta">
+            Kode: SOP-BD-01<br>
+            Divisi: Business Dev<br>
+            Estetio Agency
+        </div>
+    </div>
+
+    <p><strong>Tujuan:</strong> Menstandarisasi proses riset calon klien agar hanya menargetkan klinik berkualitas (Qualified Leads) dan menemukan celah spesifik untuk bahan pitching.</p>
+
+    <h2>I. METODOLOGI KERJA (SPRINT BATCHING)</h2>
+    <ul>
+        <li><strong>Target:</strong> 20 Klinik per Batch.</li>
+        <li><strong>Durasi:</strong> Maksimal 1 Hari Kerja per Batch.</li>
+        <li><strong>Aturan:</strong> Dilarang menghubungi (Outreach) sebelum data audit terisi lengkap.</li>
+    </ul>
+
+    <h2>II. KRITERIA TARGET (FILTER)</h2>
+    <p>Hanya masukkan klinik ke database jika memenuhi syarat:</p>
+    <ul>
+        <li>✅ <strong>Lokasi:</strong> Ruko Mandiri/Gedung (Bukan perumahan dalam gang).</li>
+        <li>✅ <strong>Rating Maps:</strong> Min 4.0 (Di bawah ini manajemen internal bobrok).</li>
+        <li>✅ <strong>Volume Review:</strong> 50 - 500 Ulasan (Sweet spot klinik berkembang).</li>
+    </ul>
+
+    <h2>III. 4 PILAR AUDIT (CHECKLIST)</h2>
+    
+    <h3>1. PILAR VISUAL (Trust Gap)</h3>
+    <ul>
+        <li>[ ] Apakah lighting video terang (Beauty) atau gelap?</li>
+        <li>[ ] Apakah wajah Dokter sering muncul?</li>
+        <li>[ ] Apakah video treatment terlihat higienis?</li>
+    </ul>
+
+    <h3>2. PILAR TRAFFIC (Ads Intelligence)</h3>
+    <ul>
+        <li>[ ] Cek Meta Ads Library: Status Active/Inactive?</li>
+        <li>[ ] Jika Active: Apakah desainnya premium atau seperti brosur Canva?</li>
+    </ul>
+
+    <h3>3. PILAR KONVERSI (Mystery Shopper)</h3>
+    <ul>
+        <li>[ ] Chat pada jam kerja (10.00 - 15.00).</li>
+        <li>[ ] Catat kecepatan respon (Target: < 15 Menit).</li>
+        <li>[ ] Analisa jawaban: Robot (Pricelist doang) vs Sales (Consultative).</li>
+    </ul>
+
+    <h3>4. PILAR REPUTASI</h3>
+    <ul>
+        <li>[ ] Cek review bintang 1-3 di Maps. Cari pola komplain (Antri lama/Admin jutek).</li>
+    </ul>
+
+    <h2>IV. FORMAT DATABASE (OUTPUT)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Instruksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Visual Score</strong></td>
+                <td>Nilai 1-10 (Subjektif Tim Kreatif)</td>
+            </tr>
+            <tr>
+                <td><strong>Ads Status</strong></td>
+                <td>OFF / ON (Jelek) / ON (Bagus - Skip)</td>
+            </tr>
+            <tr>
+                <td><strong>Admin Speed</strong></td>
+                <td>Catat dalam menit (Contoh: 45 Menit)</td>
+            </tr>
+            <tr>
+                <td><strong>Diagnosa</strong></td>
+                <td>Sebutkan 1 masalah terbesar untuk bahan chat</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>V. KESIMPULAN (VERDICT)</h2>
+    <p>Berikan label status pada setiap klinik:</p>
+    <p><span class="status-badge red">COLD</span> Iklan bagus, visual premium. (SKIP)</p>
+    <p><span class="status-badge yellow">WARM</span> Punya uang, tapi visual/iklan jelek. (TARGET UTAMA)</p>
+    <p><span class="status-badge green">HOT</span> Punya uang, admin lambat/kasar. (URGENT)</p>
+
+    <br><br>
+    <hr style="border: 0; border-top: 1px solid #e2e8f0;">
+    <p style="font-size: 0.8rem; color: #94a3b8; text-align: center;">Internal Document - Estetio Agency 2026</p>
+
+</div>
+
+</body>
+</html>

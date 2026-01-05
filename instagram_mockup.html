@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Mockup - @estetio.id</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --bg-app: #ffffff;
+            --text-main: #262626;
+            --text-secondary: #8e8e8e;
+            --brand-navy: #0f172a;
+            --brand-gold: #ca8a04;
+            --link-blue: #00376b;
+            --border-color: #dbdbdb;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #f0f2f5;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Mobile Frame Container */
+        .phone-frame {
+            width: 375px;
+            background-color: var(--bg-app);
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+            border: 8px solid #1c1c1c;
+            position: relative;
+        }
+
+        /* Status Bar (Fake) */
+        .status-bar {
+            height: 40px;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Header (Username) */
+        .header {
+            height: 44px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 10;
+        }
+
+        .username {
+            font-weight: 700;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            padding: 20px 15px 0;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .profile-pic {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--brand-navy);
+            color: var(--brand-gold);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            font-weight: bold;
+            border: 2px solid #eab308; /* Story ring effect */
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .stats {
+            display: flex;
+            flex-grow: 1;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .stat-item strong { display: block; font-size: 18px; color: var(--text-main); }
+        .stat-item span { font-size: 13px; color: var(--text-main); }
+
+        /* Bio */
+        .bio {
+            font-size: 14px;
+            line-height: 1.4;
+            padding-bottom: 15px;
+        }
+        .bio-name { font-weight: 700; }
+        .bio-category { color: var(--text-secondary); }
+        .bio-link { color: var(--link-blue); text-decoration: none; font-weight: 600; }
+
+        /* Action Buttons */
+        .actions {
+            display: flex;
+            gap: 8px;
+            padding: 0 15px 15px;
+        }
+        .btn-action {
+            flex: 1;
+            background: #efefef;
+            border: none;
+            padding: 7px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: var(--brand-navy);
+            color: white;
+        }
+
+        /* Highlights */
+        .highlights {
+            display: flex;
+            gap: 15px;
+            padding: 0 15px 15px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .highlight-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            width: 64px;
+        }
+        .highlight-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 1px solid #dbdbdb;
+            background: #fafafa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: var(--brand-navy);
+        }
+        .highlight-text { font-size: 11px; }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            border-top: 1px solid var(--border-color);
+            height: 44px;
+        }
+        .tab {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: #8e8e8e;
+            cursor: pointer;
+        }
+        .tab.active {
+            color: var(--text-main);
+            border-bottom: 1px solid var(--text-main);
+        }
+
+        /* Grid Feed */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background-color: #fff;
+            padding-bottom: 20px;
+        }
+
+        .post {
+            position: relative;
+            background-color: #f0f0f0;
+            aspect-ratio: 1 / 1; /* Square */
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Post Designs (CSS Graphics) */
+        
+        /* Style A: Navy Background, Gold Text */
+        .post-navy {
+            background-color: var(--brand-navy);
+            color: var(--brand-gold);
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Style B: White Background, Clean Text */
+        .post-white {
+            background-color: white;
+            color: var(--brand-navy);
+            padding: 10px;
+            border: 1px solid #eee;
+        }
+
+        /* Style C: Image Placeholder */
+        .post-img {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .overlay-text {
+            color: white;
+            font-weight: bold;
+            font-family: 'Times New Roman', serif;
+            letter-spacing: 1px;
+            border: 1px solid white;
+            padding: 5px 10px;
+        }
+
+        /* Post Content Specifics */
+        .pinned-icon {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            color: white;
+            font-size: 12px;
+            transform: rotate(45deg);
+        }
+
+        .post h3 { font-size: 14px; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
+        .post p { font-size: 10px; line-height: 1.2; }
+        .post i { font-size: 32px; margin-bottom: 8px; }
+
+        /* Typography Styles */
+        .font-serif { font-family: 'Times New Roman', serif; }
+        .text-gold { color: var(--brand-gold); }
+        .text-white { color: white; }
+
+        /* Hover Effect */
+        .post:hover::after {
+            content: "❤️ 24 💬 3";
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="phone-frame">
+        
+        <div class="status-bar">
+            <span>09:41</span>
+            <span><i class="ph-fill ph-wifi-high"></i> <i class="ph-fill ph-battery-full"></i></span>
+        </div>
+
+        <div class="header">
+            <div class="username">
+                estetio.id <i class="ph-fill ph-verified" style="color: #1DA1F2; font-size: 14px;"></i>
+            </div>
+            <div>
+                <i class="ph ph-plus-square" style="font-size: 24px; margin-right: 15px;"></i>
+                <i class="ph ph-list" style="font-size: 24px;"></i>
+            </div>
+        </div>
+
+        <div style="overflow-y: auto; height: calc(100% - 84px);">
+            
+            <div class="profile-section">
+                <div class="profile-header">
+                    <div class="profile-pic">E</div>
+                    <div class="stats">
+                        <div class="stat-item"><strong>9</strong><span>Posts</span></div>
+                        <div class="stat-item"><strong>142</strong><span>Followers</span></div>
+                        <div class="stat-item"><strong>20</strong><span>Following</span></div>
+                    </div>
+                </div>
+
+                <div class="bio">
+                    <div class="bio-name">Estetio | Aesthetic Growth Partner</div>
+                    <div class="bio-category">Marketing Agency</div>
+                    <div>🏥 Helping Clinics Turn Followers into Patients</div>
+                    <div>📈 Data-Driven • Visual Focused • High Ticket</div>
+                    <div>👇 <strong>Book Free Audit (Beta Program):</strong></div>
+                    <a href="#" class="bio-link">estetio.id/beta-offer</a>
+                </div>
+
+                <div class="actions">
+                    <button class="btn-action btn-primary">Follow</button>
+                    <button class="btn-action">Message</button>
+                    <button class="btn-action">Email</button>
+                </div>
+
+                <div class="highlights">
+                    <div class="highlight-item">
+                        <div class="highlight-circle"><i class="ph ph-star"></i></div>
+                        <span class="highlight-text">Results</span>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-circle"><i class="ph ph-video-camera"></i></div>
+                        <span class="highlight-text">Services</span>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-circle"><i class="ph ph-users"></i></div>
+                        <span class="highlight-text">Clients</span>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-circle"><i class="ph ph-question"></i></div>
+                        <span class="highlight-text">FAQ</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <div class="tab active"><i class="ph ph-squares-four"></i></div>
+                <div class="tab"><i class="ph ph-film-strip"></i></div>
+                <div class="tab"><i class="ph ph-tag"></i></div>
+            </div>
+
+            <div class="grid">
+                
+                <div class="post post-navy">
+                    <i class="ph-fill ph-push-pin pinned-icon"></i>
+                    <h3 class="text-gold">OPEN BETA</h3>
+                    <p class="text-white" style="margin-top:5px;">WE ARE LOOKING<br>FOR PARTNERS</p>
+                    <p style="color: #64748b; font-size: 8px; margin-top: 5px;">Limited Slot</p>
+                </div>
+
+                <div class="post post-white">
+                    <i class="ph ph-chart-line-down" style="color: #ef4444;"></i>
+                    <p style="font-weight: bold; margin-top: 5px;">WHY YOUR<br>ADS FAIL</p>
+                    <p style="font-size: 8px; margin-top: 3px;">Swipe to learn</p>
+                </div>
+
+                <div class="post post-img" style="background-image: url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=300&auto=format&fit=crop');">
+                    <div class="overlay">
+                        <div class="overlay-text">CLINIC<br>GROWTH</div>
+                    </div>
+                </div>
+
+                <div class="post post-white">
+                    <i class="ph ph-gear-six" style="color: var(--brand-navy);"></i>
+                    <h3>THE SYSTEM</h3>
+                    <p>Automate your<br>patient booking.</p>
+                </div>
+
+                <div class="post post-img" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=300&auto=format&fit=crop');">
+                     <div class="overlay">
+                        <span style="color:white; font-size: 24px;"><i class="ph-fill ph-play-circle"></i></span>
+                    </div>
+                </div>
+
+                <div class="post post-navy">
+                    <h3 class="font-serif text-white" style="font-size: 32px; font-style: italic;">ROI</h3>
+                    <p class="text-gold">Return on Investment<br>Focused.</p>
+                </div>
+
+                <div class="post post-white">
+                    <p style="font-size: 10px; color: #666;">THE PROBLEM</p>
+                    <h3 style="margin: 5px 0;">"SEPI"</h3>
+                    <p style="font-size: 9px;">Is not a destiny.<br>It's a strategy failure.</p>
+                </div>
+
+                <div class="post post-img" style="background-image: url('https://images.unsplash.com/photo-1504813184591-01572f98c85f?q=80&w=300&auto=format&fit=crop');">
+                     <div class="overlay">
+                        <div class="overlay-text">AESTHETIC</div>
+                    </div>
+                </div>
+
+                <div class="post post-navy">
+                    <div style="border: 1px solid var(--brand-gold); padding: 5px 15px;">
+                        <span class="text-gold" style="font-family: serif; font-size: 20px;">ESTETIO</span>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div style="height: 50px; display: flex; justify-content: space-around; align-items: center; border-top: 1px solid #dbdbdb; background: white;">
+                <i class="ph-fill ph-house" style="font-size: 24px;"></i>
+                <i class="ph ph-magnifying-glass" style="font-size: 24px;"></i>
+                <i class="ph ph-video" style="font-size: 24px;"></i>
+                <i class="ph ph-heart" style="font-size: 24px;"></i>
+                <div style="width: 24px; height: 24px; background: var(--brand-navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--brand-gold); font-size: 12px;">E</div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

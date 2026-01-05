@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promo Exclusive - Glass Skin Laser</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            /* Palette Warna Premium */
+            --primary: #0e7490; /* Cyan-700 (Medis & Terpercaya) */
+            --primary-dark: #155e75;
+            --primary-light: #ecfeff;
+            --accent: #d97706;    /* Amber-600 (Promo & Urgency) */
+            --accent-light: #fffbeb;
+            --text-dark: #1e293b;
+            --text-grey: #64748b;
+            --bg-body: #f8fafc;
+            --white: #ffffff;
+            
+            /* UI Variables */
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --shadow-soft: 0 10px 40px -10px rgba(0,0,0,0.08);
+            --shadow-card: 0 4px 6px -1px rgba(0,0,0,0.05);
+            
+            /* Watermark */
+            --wm-bg: rgba(255, 255, 255, 0.9);
+            --wm-border: var(--primary);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-body);
+            background-image: radial-gradient(at 0% 0%, hsla(189,100%,96%,1) 0, transparent 50%), radial-gradient(at 50% 100%, hsla(37,100%,96%,1) 0, transparent 50%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            max-width: 480px; /* Mobile First View */
+            margin: 0 auto;
+            min-height: 100vh;
+            border-left: 1px solid rgba(0,0,0,0.05);
+            border-right: 1px solid rgba(0,0,0,0.05);
+            padding-bottom: 100px; /* Space for sticky button */
+            position: relative;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-up {
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+
+        /* WATERMARK STYLE */
+        .fixed-watermark {
+            position: fixed;
+            bottom: 110px;
+            right: 20px;
+            z-index: 1001;
+            opacity: 0.8;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+            border-right: 3px solid var(--wm-border);
+            padding-right: 15px;
+            background: var(--wm-bg);
+            padding: 8px 12px;
+            border-radius: 8px 0 0 8px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        @media (min-width: 500px) {
+            .fixed-watermark {
+                right: calc(50% - 240px - 140px);
+                bottom: 20px;
+            }
+        }
+
+        .watermark-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-grey);
+        }
+
+        .watermark-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* HEADER (Glassmorphism) */
+        .header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo { 
+            font-weight: 800; 
+            color: var(--primary); 
+            letter-spacing: 0.5px; 
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            background: var(--white);
+            border-radius: 0 0 30px 30px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 30px;
+        }
+        .hero-img-container {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            background-color: #cbd5e1;
+            overflow: hidden;
+        }
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            background: linear-gradient(45deg, #64748b, #94a3b8); /* Placeholder gradient */
+        }
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(4px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        .hero-content {
+            padding: 25px 20px 35px;
+            text-align: center;
+        }
+        .badge {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-bottom: 15px;
+            border: 1px solid #cffafe;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            line-height: 1.2;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+        .hero-desc {
+            color: var(--text-grey);
+            font-size: 1rem;
+        }
+
+        /* SECTION STYLES */
+        .section { padding: 0 20px 40px; }
+        
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 3px;
+            background: var(--accent);
+            margin: 8px auto 0;
+            border-radius: 2px;
+            opacity: 0.5;
+        }
+
+        /* PROBLEM / PAIN POINTS */
+        .pain-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            box-shadow: var(--shadow-card);
+            border: 1px solid #fee2e2; /* Red-ish tint border */
+        }
+        .pain-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed #f1f5f9;
+        }
+        .pain-item:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+        .x-icon { 
+            color: #ef4444; 
+            background: #fef2f2; 
+            width: 24px; height: 24px; 
+            border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; flex-shrink: 0;
+        }
+
+        /* SOLUTION / TRUST */
+        .solution-box {
+            background: var(--primary);
+            color: var(--white);
+            padding: 25px;
+            border-radius: var(--radius-lg);
+            margin-top: 10px;
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+        }
+        /* Decorative circle */
+        .solution-box::before {
+            content: '';
+            position: absolute;
+            top: -50px; right: -50px;
+            width: 150px; height: 150px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: start;
+            gap: 12px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        .check-item:last-child { margin-bottom: 0; }
+        .check-icon { 
+            color: var(--primary); 
+            background: var(--white);
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            color: var(--text-grey);
+            background: var(--white);
+            padding: 6px 12px;
+            border-radius: 50px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+            border: 1px solid #e2e8f0;
+        }
+
+        /* OFFER / PRICING */
+        .price-card {
+            background: var(--white);
+            padding: 30px 20px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft);
+            border: 2px solid var(--accent); /* Highlight border */
+            text-align: center;
+            position: relative;
+            margin-top: 10px;
+        }
+        .ribbon {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 16px;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(245, 158, 11, 0.4);
+        }
+        .package-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+        .package-desc {
+            color: var(--text-grey);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        .price-wrapper {
+            margin: 20px 0;
+            padding: 15px;
+            background: var(--accent-light);
+            border-radius: var(--radius-md);
+            border: 1px dashed var(--accent);
+        }
+        .price-old { 
+            text-decoration: line-through; 
+            color: var(--text-grey); 
+            font-size: 0.9rem; 
+        }
+        .price-new { 
+            color: var(--primary); 
+            font-size: 2.2rem; 
+            font-weight: 800; 
+            line-height: 1;
+            margin-top: 5px;
+        }
+        .scarcity-bar {
+            background: #fee2e2;
+            height: 6px;
+            border-radius: 10px;
+            margin: 15px auto 5px;
+            width: 80%;
+            overflow: hidden;
+        }
+        .scarcity-fill {
+            background: #ef4444;
+            height: 100%;
+            width: 85%; /* Sisa slot */
+            border-radius: 10px;
+        }
+        .scarcity-text {
+            color: #ef4444; 
+            font-size: 0.8rem; 
+            font-weight: 600;
+            animation: pulseText 2s infinite;
+        }
+
+        /* FAQ */
+        .faq-container {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 0 20px;
+            box-shadow: var(--shadow-card);
+        }
+        .faq-item {
+            border-bottom: 1px solid #f1f5f9;
+            padding: 15px 0;
+        }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-q { 
+            font-weight: 600; 
+            font-size: 0.95rem; 
+            margin-bottom: 6px; 
+            display: flex;
+            justify-content: space-between;
+            color: var(--primary-dark);
+        }
+        .faq-a { font-size: 0.9rem; color: var(--text-grey); }
+
+        /* STICKY CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            background: var(--white);
+            padding: 15px 20px 20px;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+            border-top: 1px solid #f1f5f9;
+            z-index: 999;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .promo-timer {
+            font-size: 0.75rem; 
+            text-align: center; 
+            color: var(--text-grey); 
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .promo-timer span { color: #ef4444; }
+
+        .btn-wa {
+            background: #25D366; /* WA Brand Color */
+            background: linear-gradient(to bottom right, #25D366, #128C7E);
+            color: white;
+            text-decoration: none;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 20px -4px rgba(37, 211, 102, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+        .btn-wa:active { transform: scale(0.98); box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3); }
+
+        /* KEYFRAMES */
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+        @keyframes pulseText {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Watermark -->
+    <div class="fixed-watermark">
+        <span class="watermark-label">Prepared by</span>
+        <span class="watermark-name">Aditya</span>
+    </div>
+
+    <!-- Header Sticky -->
+    <div class="header">
+        <div class="logo">KLINIK CANTIK SEHAT</div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero animate-up">
+        <div class="hero-img-container">
+            <div class="hero-img">
+                <div class="play-btn">
+                    <i class="ph-fill ph-play" style="font-size: 1.5rem; margin-left: 3px;"></i>
+                </div>
+                <!-- Placeholder Text, normally an <img> would be here -->
+                <span style="position: absolute; bottom: 20px; font-size: 0.8rem; opacity: 0.8;">Video Treatment Experience</span>
+            </div>
+        </div>
+        <div class="hero-content">
+            <span class="badge">✨ PROMO KHUSUS JANUARI</span>
+            <h1>Wajah Kusam & Bertekstur? Atasi dalam 1x Treatment.</h1>
+            <p class="hero-desc">Teknologi <em>Pico Laser Generasi Terbaru</em> yang mencerahkan instan tanpa rasa sakit.</p>
+        </div>
+    </div>
+
+    <!-- Pain Points -->
+    <div class="section">
+        <div class="section-title">Apakah Anda Mengalami Ini?</div>
+        <div class="pain-card">
+            <div class="pain-item">
+                <span class="x-icon"><i class="ph-bold ph-x"></i></span>
+                <span>Bekas jerawat membandel susah hilang</span>
+            </div>
+            <div class="pain-item">
+                <span class="x-icon"><i class="ph-bold ph-x"></i></span>
+                <span>Pori-pori besar & tekstur kulit kasar</span>
+            </div>
+            <div class="pain-item">
+                <span class="x-icon"><i class="ph-bold ph-x"></i></span>
+                <span>Takut treatment yang sakit & bikin merah</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Solution / Trust -->
+    <div class="section">
+        <div class="solution-box">
+            <h2 style="font-family: 'Playfair Display'; font-size: 1.5rem; margin-bottom: 20px; text-align: center;">Solusi Medis Teruji</h2>
+            <div class="check-item">
+                <div class="check-icon"><i class="ph-bold ph-check"></i></div>
+                <div><strong>No Downtime:</strong> Wajah tidak merah gosong, bisa langsung pakai makeup setelah treatment.</div>
+            </div>
+            <div class="check-item">
+                <div class="check-icon"><i class="ph-bold ph-check"></i></div>
+                <div><strong>FDA Approved:</strong> Menggunakan alat asli Eropa (Bukan mesin KW/China).</div>
+            </div>
+            <div class="check-item">
+                <div class="check-icon"><i class="ph-bold ph-check"></i></div>
+                <div><strong>Ditangani Dokter:</strong> Prosedur medis dilakukan dokter estetika, bukan beautician.</div>
+            </div>
+        </div>
+        
+        <div class="trust-badges">
+            <div class="trust-badge"><i class="ph-fill ph-certificate" style="color:var(--primary)"></i> Izin Dinkes</div>
+            <div class="trust-badge"><i class="ph-fill ph-star" style="color:#eab308"></i> 4.9/5 Rating</div>
+            <div class="trust-badge"><i class="ph-fill ph-users" style="color:var(--primary)"></i> 10k+ Pasien</div>
+        </div>
+    </div>
+
+    <!-- Pricing Offer -->
+    <div class="section">
+        <div class="price-card">
+            <span class="ribbon">BEST SELLER</span>
+            <div class="package-name">Paket Glass Skin Glow</div>
+            <div class="package-desc">Consultation + Pico Laser + Gold Mask</div>
+            
+            <div class="price-wrapper">
+                <div class="price-old">Rp 1.500.000</div>
+                <div class="price-new">Rp 499rb</div>
+                <div style="font-size: 0.8rem; color: var(--text-grey); margin-top: 5px;">(Hemat 67% Hari Ini)</div>
+            </div>
+
+            <div class="scarcity-bar">
+                <div class="scarcity-fill"></div>
+            </div>
+            <div class="scarcity-text">🔥 Sisa 3 Slot Promo Hari Ini!</div>
+        </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="section" style="padding-bottom: 20px;">
+        <div class="section-title" style="margin-bottom: 15px;">Sering Ditanyakan</div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-q">Apakah sakit? <i class="ph-bold ph-caret-down"></i></div>
+                <div class="faq-a">Hanya terasa "cekit-cekit" ringan seperti digigit semut. Kami menggunakan krim anestesi premium agar Anda tetap nyaman.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Berapa lama pengerjaan? <i class="ph-bold ph-caret-down"></i></div>
+                <div class="faq-a">Total durasi sekitar 45-60 menit (termasuk konsultasi dokter dan anestesi).</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky CTA -->
+    <div class="sticky-cta">
+        <div class="promo-timer">
+            Promo berakhir otomatis saat <span>Kuota Habis</span>
+        </div>
+        <a href="https://wa.me/" class="btn-wa">
+            <i class="ph-fill ph-whatsapp-logo" style="font-size: 1.3rem;"></i>
+            AMBIL PROMO SEKARANG
+        </a>
+    </div>
+
+</body>
+</html>
