@@ -287,9 +287,29 @@
             .scope-grid, .feature-list { grid-template-columns: 1fr; }
             h1 { font-size: 2rem; }
         }
+
+        .back-home-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 2000;
+            background: var(--navy);
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            display: flex; align-items: center; gap: 6px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .back-home-btn:hover { background: var(--gold); }
     </style>
 </head>
 <body>
+
+    <a href="index.html" class="back-home-btn">
+        <i class="ph-bold ph-arrow-left"></i> Dashboard
+    </a>
 
     <!-- Watermark -->
     <div class="fixed-watermark">
