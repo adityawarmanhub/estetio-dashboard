@@ -120,9 +120,28 @@
             .nav { bottom: 20px; right: 20px; width: auto; } 
             .fixed-watermark { display: none; } 
         }
+
+        .back-nav {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 3000;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex; align-items: center; gap: 8px;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: color 0.2s;
+        }
+        .back-nav:hover { color: var(--accent); background: rgba(255,255,255,0.05); }
     </style>
 </head>
 <body>
+
+    <a href="index.html" class="back-nav">
+        <i class="ph-bold ph-arrow-left"></i> Back to Dashboard
+    </a>
 
     <!-- Watermark -->
     <div class="fixed-watermark">
