@@ -286,9 +286,30 @@
             font-weight: bold;
         }
 
+        .back-link {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: var(--brand-navy);
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.9rem;
+            transition: transform 0.2s;
+        }
+        .back-link:hover { transform: translateY(-2px); }
+
     </style>
 </head>
 <body>
+
+    <a href="index.html" class="back-link">
+        <i class="ph-bold ph-arrow-left"></i> Back to Dashboard
+    </a>
 
     <div class="phone-frame">
         
