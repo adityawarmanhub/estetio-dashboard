@@ -377,9 +377,32 @@
                 background: rgba(255,255,255,0.9);
             }
         }
+
+        /* Back to Dashboard */
+        .back-dashboard {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 2000;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex; align-items: center; gap: 8px;
+            transition: transform 0.2s;
+        }
+        .back-dashboard:hover { transform: translateY(-3px); }
     </style>
 </head>
 <body>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-dashboard">
+        <i class="ph-bold ph-arrow-u-up-left"></i> Dashboard
+    </a>
 
     <!-- Watermark (Added) -->
     <div class="fixed-watermark">
