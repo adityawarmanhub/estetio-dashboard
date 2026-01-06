@@ -355,6 +355,32 @@
         }
 
         .offer-box h2 { color: white; margin-bottom: 15px; }
+
+        /* LIST STYLE FIX */
+        .offer-list {
+            text-align: left;
+            max-width: 500px;
+            margin: 0 auto 30px;
+            color: #cbd5e1;
+            list-style: none;
+            padding: 0;
+        }
+        
+        .offer-list li {
+            margin-bottom: 12px;
+            display: flex; /* Flexbox agar ikon & teks sejajar */
+            align-items: flex-start; /* Ikon selalu di atas, tidak turun ke tengah */
+            gap: 12px; /* Jarak antara ikon dan teks */
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .offer-list i {
+            color: var(--accent);
+            font-size: 1.2rem;
+            flex-shrink: 0; /* Mencegah ikon gepeng/mengecil */
+            margin-top: 2px; /* Menyejajarkan ikon dengan baris pertama teks */
+        }
         
         /* FOOTER */
         footer {
@@ -597,10 +623,11 @@
                     Kami sedang membangun portofolio studi kasus baru. Kami akan menangani visual & ads klinik Anda <strong>GRATIS Biaya Jasa Agensi</strong> untuk bulan pertama.
                 </p>
                 
-                <ul style="text-align: left; max-width: 500px; margin: 0 auto 30px; color: #cbd5e1;">
-                    <li style="margin-bottom: 10px;"><i class="ph ph-check" style="color: var(--accent); margin-right: 10px;"></i> Anda hanya menanggung Budget Iklan (Ads Spend).</li>
-                    <li style="margin-bottom: 10px;"><i class="ph ph-check" style="color: var(--accent); margin-right: 10px;"></i> Mendapatkan 4 Video Reels Premium & Foto.</li>
-                    <li style="margin-bottom: 10px;"><i class="ph ph-check" style="color: var(--accent); margin-right: 10px;"></i> Setup Iklan & Landing Page Gratis.</li>
+                <!-- LIST SUDAH DIPERBAIKI DENGAN CLASS offer-list -->
+                <ul class="offer-list">
+                    <li><i class="ph ph-check-circle"></i> Anda hanya menanggung Budget Iklan (Ads Spend).</li>
+                    <li><i class="ph ph-check-circle"></i> Mendapatkan 4 Video Reels Premium & Foto.</li>
+                    <li><i class="ph ph-check-circle"></i> Setup Iklan & Landing Page Gratis.</li>
                 </ul>
 
                 <a href="https://wa.me/" target="_blank" class="btn btn-gold">
