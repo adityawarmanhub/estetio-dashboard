@@ -187,9 +187,28 @@
             font-size: 0.8rem;
             color: var(--text-grey);
         }
+
+        .back-menu {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 2000;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(4px);
+            width: 35px; height: 35px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
     </style>
 </head>
 <body>
+
+    <a href="index.html" class="back-menu">
+        <i class="ph-bold ph-arrow-left"></i>
+    </a>
 
     <!-- Watermark -->
     <div class="fixed-watermark">
