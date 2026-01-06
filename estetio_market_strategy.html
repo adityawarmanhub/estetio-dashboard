@@ -220,9 +220,32 @@
             .grid-2, .grid-3, .step-container { grid-template-columns: 1fr; flex-direction: column; }
             .brand-logo-nav { font-size: 1rem; top: 20px; left: 20px; }
         }
+
+        /* Back Button */
+        .back-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 2000;
+            text-decoration: none;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            display: flex; 
+            align-items: center; 
+            gap: 6px;
+            transition: background 0.3s;
+        }
+        .back-home:hover { background: var(--brand-color); border-color: var(--brand-color); }
     </style>
 </head>
 <body>
+
+<!-- Back Button -->
+<a href="index.html" class="back-home"><i class="ph-bold ph-arrow-left"></i> Dashboard</a>
 
 <!-- Watermark -->
 <div class="fixed-watermark">
