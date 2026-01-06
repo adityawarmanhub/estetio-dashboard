@@ -221,31 +221,33 @@
             .brand-logo-nav { font-size: 1rem; top: 20px; left: 20px; }
         }
 
-        /* Back Button */
-        .back-home {
+        /* Back Button - Hidden initially */
+        #backToDash {
             position: fixed;
-            top: 20px;
-            left: 20px;
+            bottom: 90px; /* Above navbar */
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 2000;
             text-decoration: none;
-            background: rgba(0,0,0,0.5);
+            background: var(--brand-color);
             color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            border: 1px solid rgba(255,255,255,0.2);
-            display: flex; 
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: none; 
             align-items: center; 
-            gap: 6px;
-            transition: background 0.3s;
+            gap: 8px;
+            box-shadow: 0 5px 20px rgba(99, 102, 241, 0.4);
+            animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .back-home:hover { background: var(--brand-color); border-color: var(--brand-color); }
+        @keyframes popUp { from { transform: translate(-50%, 20px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
     </style>
 </head>
 <body>
 
 <!-- Back Button -->
-<a href="index.html" class="back-home"><i class="ph-bold ph-arrow-left"></i> Dashboard</a>
+<a href="index.html" id="backToDash"><i class="ph-bold ph-squares-four"></i> Back to Dashboard</a>
 
 <!-- Watermark -->
 <div class="fixed-watermark">
@@ -462,10 +464,16 @@
 
         // Button states
         prevBtn.disabled = current === 0;
+        
+        // LOGIC TOMBOL BACK
+        const backBtn = document.getElementById('backToDash');
+        
         if(current === total - 1) {
             nextBtn.innerHTML = '<i class="ph-bold ph-check"></i>';
+            backBtn.style.display = 'flex'; // Munculkan di slide terakhir
         } else {
             nextBtn.innerHTML = '<i class="ph-bold ph-caret-right"></i>';
+            backBtn.style.display = 'none';
         }
     }
 
