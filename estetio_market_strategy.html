@@ -71,12 +71,13 @@
         .slide {
             min-width: 100vw;
             height: 100vh;
-            padding: 80px 20px 100px;
+            padding: 80px 40px 100px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            overflow-y: auto;
+            overflow-y: auto; /* Allow scrolling inside individual slides */
             position: relative;
+            box-sizing: border-box;
         }
 
         .slide-content-wrapper {
@@ -212,15 +213,6 @@
             flex-shrink: 0;
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .slide { padding: 80px 20px; justify-content: flex-start; }
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.5rem; }
-            .grid-2, .grid-3, .step-container { grid-template-columns: 1fr; flex-direction: column; }
-            .brand-logo-nav { font-size: 1rem; top: 20px; left: 20px; }
-        }
-
         /* Back Button - Hidden initially */
         #backToDash {
             position: fixed;
@@ -240,8 +232,62 @@
             gap: 8px;
             box-shadow: 0 5px 20px rgba(99, 102, 241, 0.4);
             animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            white-space: nowrap;
         }
         @keyframes popUp { from { transform: translate(-50%, 20px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+
+        /* =========================================
+           MOBILE RESPONSIVE FIXES (MEDIA QUERIES)
+           ========================================= */
+        @media (max-width: 768px) {
+            /* Slide Layout & Scrolling */
+            .slide { 
+                padding: 70px 20px 100px 20px; /* Padding samping lebih kecil di HP */
+                justify-content: flex-start; /* Konten mulai dari atas */
+                height: 100vh; /* Pastikan tinggi layar penuh */
+                overflow-y: scroll; /* Paksa scroll vertikal jika konten panjang */
+                -webkit-overflow-scrolling: touch; /* Smooth scroll di iOS */
+            }
+            
+            /* Typography Scale Down */
+            h1 { font-size: 1.8rem; margin-top: 10px; }
+            h2 { font-size: 1.4rem; padding-left: 15px; border-left-width: 3px; }
+            h3 { font-size: 1.1rem; }
+            p { font-size: 0.95rem; }
+            
+            /* Grid Stacking (Stack to 1 Column) */
+            .grid-2, .grid-3 { 
+                grid-template-columns: 1fr; 
+                gap: 15px;
+            }
+            
+            /* Steps/Flowchart Stacking */
+            .step-container { 
+                flex-direction: column; 
+                gap: 25px; /* Jarak antar step lebih lebar karena ada nomor di atas */
+            }
+            .step-box {
+                padding-top: 25px; /* Ruang untuk nomor */
+            }
+            
+            /* UI Elements */
+            .card { padding: 20px; }
+            .brand-logo-nav { font-size: 1rem; top: 20px; left: 20px; }
+            .fixed-watermark { display: none; } /* Hide watermark on mobile */
+            
+            /* Navigation Bar Adjustment */
+            .nav-bar {
+                width: 90%;
+                padding: 10px 20px;
+                bottom: 20px;
+            }
+            
+            /* Script Box Font Size */
+            .script-box {
+                font-size: 0.85rem;
+                padding: 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -475,6 +521,10 @@
             nextBtn.innerHTML = '<i class="ph-bold ph-caret-right"></i>';
             backBtn.style.display = 'none';
         }
+        
+        // Scroll to top of slide when changing (for mobile)
+        const activeSlide = slides[current];
+        activeSlide.scrollTop = 0;
     }
 
     // Initialize
