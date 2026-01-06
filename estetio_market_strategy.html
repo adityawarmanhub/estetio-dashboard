@@ -242,10 +242,11 @@
         @media (max-width: 768px) {
             /* Slide Layout & Scrolling */
             .slide { 
-                padding: 70px 20px 100px 20px; /* Padding samping lebih kecil di HP */
+                padding: 70px 20px 180px 20px; /* PADDING BAWAH DITAMBAH KE 180PX */
                 justify-content: flex-start; /* Konten mulai dari atas */
-                height: 100vh; /* Pastikan tinggi layar penuh */
-                overflow-y: scroll; /* Paksa scroll vertikal jika konten panjang */
+                height: 100vh; /* Fallback */
+                height: 100dvh; /* Dynamic Height untuk Mobile Browser */
+                overflow-y: auto; /* Paksa scroll vertikal */
                 -webkit-overflow-scrolling: touch; /* Smooth scroll di iOS */
             }
             
@@ -521,10 +522,6 @@
             nextBtn.innerHTML = '<i class="ph-bold ph-caret-right"></i>';
             backBtn.style.display = 'none';
         }
-        
-        // Scroll to top of slide when changing (for mobile)
-        const activeSlide = slides[current];
-        activeSlide.scrollTop = 0;
     }
 
     // Initialize
