@@ -250,33 +250,34 @@
             }
         }
 
-        /* Back Button Style */
-        .back-btn {
+        /* Back Button Style - HIDDEN BY DEFAULT */
+        #backBtn {
             position: fixed;
-            top: 20px;
-            left: 20px;
+            bottom: 30px;
+            right: 30px;
             z-index: 2000;
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #94a3b8;
-            padding: 8px 15px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 10px 20px;
             border-radius: 50px;
             text-decoration: none;
-            font-size: 0.8rem;
-            transition: all 0.3s;
-            display: flex;
+            font-size: 0.9rem;
+            display: none; /* Hidden initially */
             align-items: center;
             gap: 8px;
-            backdrop-filter: blur(5px);
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
         }
-        .back-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
+        #backBtn:hover { transform: translateY(-3px); background: var(--accent-color); color: var(--bg-color); }
     </style>
 </head>
 <body>
 
-    <!-- Back Button -->
-    <a href="index.html" class="back-btn">
-        <i class="ph-bold ph-arrow-u-up-left"></i> Dashboard
+    <!-- Back Button (Only Last Slide) -->
+    <a href="index.html" id="backBtn">
+        <i class="ph-bold ph-squares-four"></i> Dashboard
     </a>
 
     <!-- Watermark -->
@@ -563,10 +564,14 @@
             prevBtn.disabled = currentSlide === 0;
             prevBtn.style.opacity = currentSlide === 0 ? '0.3' : '1';
             
+            // LOGIC TOMBOL BACK: Hanya muncul di slide terakhir
+            const backButton = document.getElementById('backBtn');
             if(currentSlide === slides.length - 1) {
                 nextBtn.innerHTML = '<i class="ph-bold ph-check"></i>';
+                backButton.style.display = 'flex'; // Munculkan tombol
             } else {
                 nextBtn.innerHTML = '<i class="ph-bold ph-caret-right"></i>';
+                backButton.style.display = 'none'; // Sembunyikan tombol
             }
         }
 
