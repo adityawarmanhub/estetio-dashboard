@@ -44,7 +44,7 @@
             padding: 0 20px;
         }
 
-        /* WATERMARK STYLE (Added for Consistency) */
+        /* WATERMARK STYLE */
         .fixed-watermark {
             position: fixed;
             bottom: 20px;
@@ -58,7 +58,7 @@
             text-align: right;
             border-right: 3px solid var(--accent);
             padding-right: 15px;
-            background: rgba(255, 255, 255, 0.8); /* Background tipis agar terbaca */
+            background: rgba(255, 255, 255, 0.8);
             padding: 10px 15px 10px 10px;
             border-radius: 8px 0 0 8px;
             backdrop-filter: blur(5px);
@@ -142,10 +142,9 @@
             gap: 8px;
         }
         
-        /* Updated Logo Tagline Style */
         .logo span { 
             color: var(--accent);
-            font-size: 0.5em; /* Smaller tagline */
+            font-size: 0.5em;
             letter-spacing: 3px;
             vertical-align: middle;
             margin-left: 5px;
@@ -276,7 +275,7 @@
             align-items: center;
             justify-content: center;
             border: 1px solid rgba(255,255,255,0.1);
-            overflow: hidden; /* Pastikan gambar tidak keluar dari border radius */
+            overflow: hidden; 
         }
 
         /* FOUNDER SECTION */
@@ -359,9 +358,8 @@
             font-size: 0.9rem;
         }
         
-        /* Tambahkan style khusus untuk logo di dalam footer */
         footer .logo {
-            color: var(--white); /* Mengubah warna logo menjadi putih khusus di footer */
+            color: var(--white); 
         }
 
         /* RESPONSIVE */
@@ -378,33 +376,49 @@
             }
         }
 
-        /* Back to Dashboard */
+        /* Back to Dashboard - REVISED POS */
         .back-dashboard {
             position: fixed;
-            bottom: 20px;
-            left: 20px;
+            bottom: 25px; /* Pindah ke bawah */
+            left: 25px;   /* Pindah ke kiri */
             z-index: 2000;
-            background: var(--primary);
+            background: rgba(15, 23, 42, 0.9); /* Sedikit transparan agar tidak terlalu memblok */
             color: white;
-            padding: 10px 20px;
+            padding: 8px 16px;
             border-radius: 50px;
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             display: flex; align-items: center; gap: 8px;
-            transition: transform 0.2s;
+            transition: all 0.2s;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(4px);
         }
-        .back-dashboard:hover { transform: translateY(-3px); }
+        .back-dashboard:hover { 
+            transform: translateY(-3px); 
+            background: var(--primary);
+        }
+        
+        /* Mobile specific adjustment for back button */
+        @media (max-width: 768px) {
+            .back-dashboard {
+                bottom: 20px;
+                left: 20px;
+                padding: 8px 12px;
+                font-size: 0.75rem;
+                opacity: 0.8; /* Lebih pudar di mobile */
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Back Button -->
+    <!-- Back Button (Repositioned to Bottom Left) -->
     <a href="index.html" class="back-dashboard">
         <i class="ph-bold ph-arrow-u-up-left"></i> Dashboard
     </a>
 
-    <!-- Watermark (Added) -->
+    <!-- Watermark -->
     <div class="fixed-watermark">
         <span class="watermark-label">Prepared by</span>
         <span class="watermark-name">Aditya</span>
