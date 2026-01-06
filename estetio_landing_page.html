@@ -25,23 +25,27 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--secondary);
             color: var(--text-dark);
             line-height: 1.6;
-            scroll-behavior: smooth;
+            overflow-x: hidden; /* Mencegah scroll horizontal yang tidak diinginkan */
         }
 
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
             color: var(--primary);
+            line-height: 1.2;
         }
 
         .container {
             max-width: var(--max-width);
             margin: 0 auto;
             padding: 0 20px;
+            width: 100%;
         }
 
         /* WATERMARK STYLE */
@@ -89,6 +93,7 @@
             transition: all 0.3s ease;
             letter-spacing: 0.5px;
             font-size: 0.95rem;
+            text-align: center;
         }
 
         .btn-primary {
@@ -122,7 +127,7 @@
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid #e2e8f0;
-            padding: 20px 0;
+            padding: 15px 0;
         }
 
         .nav-content {
@@ -140,6 +145,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            white-space: nowrap; /* Mencegah logo turun baris */
         }
         
         .logo span { 
@@ -161,7 +167,6 @@
 
         .hero h1 {
             font-size: 3.5rem;
-            line-height: 1.2;
             margin-bottom: 20px;
             max-width: 900px;
             margin-left: auto;
@@ -208,7 +213,7 @@
         }
         
         .section-header h2 { font-size: 2.5rem; margin-bottom: 15px; }
-        .section-header p { color: var(--text-light); }
+        .section-header p { color: var(--text-light); max-width: 600px; margin: 0 auto; }
 
         .grid-3 {
             display: grid;
@@ -221,6 +226,7 @@
             border: 1px solid #e2e8f0;
             border-radius: 8px;
             transition: transform 0.3s;
+            height: 100%; /* Agar tinggi kartu sama */
         }
         
         .card:hover { transform: translateY(-5px); border-color: var(--accent); }
@@ -275,7 +281,7 @@
             align-items: center;
             justify-content: center;
             border: 1px solid rgba(255,255,255,0.1);
-            overflow: hidden; 
+            overflow: hidden; /* Pastikan gambar tidak keluar dari border radius */
         }
 
         /* FOUNDER SECTION */
@@ -297,6 +303,7 @@
             text-align: center;
             border-radius: 8px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            height: 100%;
         }
 
         .founder-img {
@@ -362,27 +369,13 @@
             color: var(--white); 
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .method-box { flex-direction: column; }
-            .founder-grid { grid-template-columns: 1fr; }
-            .offer-box { padding: 40px 20px; }
-            
-            .fixed-watermark {
-                bottom: 15px;
-                right: 15px;
-                background: rgba(255,255,255,0.9);
-            }
-        }
-
-        /* Back to Dashboard - REVISED POS */
+        /* Back to Dashboard - Responsive Position */
         .back-dashboard {
             position: fixed;
-            bottom: 25px; /* Pindah ke bawah */
-            left: 25px;   /* Pindah ke kiri */
+            bottom: 25px; 
+            left: 25px;   
             z-index: 2000;
-            background: rgba(15, 23, 42, 0.9); /* Sedikit transparan agar tidak terlalu memblok */
+            background: rgba(15, 23, 42, 0.9); 
             color: white;
             padding: 8px 16px;
             border-radius: 50px;
@@ -398,22 +391,66 @@
             transform: translateY(-3px); 
             background: var(--primary);
         }
-        
-        /* Mobile specific adjustment for back button */
+
+        /* =========================================
+           MOBILE RESPONSIVE FIXES (MEDIA QUERIES)
+           ========================================= */
         @media (max-width: 768px) {
+            /* General */
+            :root {
+                --padding-section: 60px 20px; /* Kurangi padding section */
+            }
+
+            /* Navbar */
+            .logo { font-size: 1.2rem; }
+            .btn-primary { padding: 10px 20px; font-size: 0.85rem; }
+
+            /* Hero Section */
+            .hero { padding: 120px 20px 60px; }
+            .hero h1 { font-size: 2.2rem; } /* Font lebih kecil di HP */
+            .hero p { font-size: 1rem; }
+
+            /* Grid Adjustments */
+            .grid-3 { 
+                grid-template-columns: 1fr; /* Paksa jadi 1 kolom */
+                gap: 20px; 
+            }
+            
+            .founder-grid { 
+                grid-template-columns: 1fr; /* Paksa jadi 1 kolom */
+                gap: 40px; 
+            }
+
+            /* Method Section */
+            .method-box { flex-direction: column; } /* Gambar turun ke bawah */
+            .method-image { width: 100%; height: 250px; margin-top: 30px; } /* Sesuaikan tinggi gambar */
+            .step h4 { font-size: 1.3rem; }
+
+            /* Offer Section */
+            .offer-box { padding: 40px 20px; }
+            .offer-badge { position: static; display: inline-block; margin-bottom: 20px; } /* Badge tidak overlap */
+            .offer-box h2 { font-size: 1.8rem; }
+
+            /* Typography */
+            .section-header h2 { font-size: 2rem; }
+
+            /* Back Button Mobile */
             .back-dashboard {
                 bottom: 20px;
                 left: 20px;
                 padding: 8px 12px;
                 font-size: 0.75rem;
-                opacity: 0.8; /* Lebih pudar di mobile */
+                opacity: 0.9;
             }
+            
+            /* Watermark hide on mobile to save space */
+            .fixed-watermark { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Back Button (Repositioned to Bottom Left) -->
+    <!-- Back Button -->
     <a href="index.html" class="back-dashboard">
         <i class="ph-bold ph-arrow-u-up-left"></i> Dashboard
     </a>
@@ -461,7 +498,6 @@
 
             <div class="grid-3">
                 <div class="card">
-                    <!-- Mengganti icon yang broken dengan Chart Line Down -->
                     <i class="ph ph-chart-line-down"></i>
                     <h3>Iklan Boncos</h3>
                     <p>Anda menghabiskan jutaan untuk Ads, tapi yang masuk hanya chat "Harga berapa?" lalu menghilang (Ghosting).</p>
@@ -507,7 +543,7 @@
                 </div>
                 
                 <div class="method-image">
-                    <!-- Placeholder untuk gambar Chart -->
+                    <!-- Gunakan placeholder atau ganti dengan gambar asli -->
                     <img src="https://placehold.co/600x400/1e293b/ca8a04?text=Growth+Chart+Visual" alt="Grafik Pertumbuhan Klinik Estetio" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
             </div>
