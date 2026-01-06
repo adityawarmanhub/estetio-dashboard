@@ -121,26 +121,32 @@
             .fixed-watermark { display: none; } 
         }
 
-        .back-nav {
+        /* Back Button - Hidden initially */
+        #endBackBtn {
             position: fixed;
-            top: 20px;
-            left: 20px;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 3000;
-            color: #64748b;
+            background: var(--accent);
+            color: #000;
             text-decoration: none;
-            font-size: 0.9rem;
-            display: flex; align-items: center; gap: 8px;
-            padding: 8px 16px;
-            border-radius: 4px;
-            transition: color 0.2s;
+            font-weight: bold;
+            font-size: 1rem;
+            display: none;
+            align-items: center; gap: 10px;
+            padding: 12px 30px;
+            border-radius: 50px;
+            box-shadow: 0 5px 20px rgba(202, 138, 4, 0.4);
+            animation: fadeInBtn 0.5s;
         }
-        .back-nav:hover { color: var(--accent); background: rgba(255,255,255,0.05); }
+        @keyframes fadeInBtn { from { opacity: 0; transform: translate(-50%, 10px); } to { opacity: 1; transform: translate(-50%, 0); } }
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="back-nav">
-        <i class="ph-bold ph-arrow-left"></i> Back to Dashboard
+    <a href="index.html" id="endBackBtn">
+        <i class="ph-bold ph-check-circle"></i> Selesai Audit (Dashboard)
     </a>
 
     <!-- Watermark -->
@@ -283,6 +289,18 @@
         function showSlide(n) {
             slides.forEach(s => s.classList.remove('active'));
             slides[n].classList.add('active');
+            
+            // LOGIC TOMBOL BACK
+            const backBtn = document.getElementById('endBackBtn');
+            const nav = document.querySelector('.nav');
+            
+            if(n === slides.length - 1) {
+                backBtn.style.display = 'flex';
+                nav.style.display = 'none'; // Sembunyikan nav prev/next agar fokus ke tombol selesai
+            } else {
+                backBtn.style.display = 'none';
+                nav.style.display = 'flex';
+            }
         }
 
         function nextSlide() {
