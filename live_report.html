@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Report - Estetio Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --navy: #0f172a;
+            --gold: #ca8a04;
+            --green: #10b981;
+            --red: #ef4444;
+            --bg: #f8fafc;
+            --card: #ffffff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: #334155; padding-bottom: 90px; }
+        
+        .header {
+            background: var(--navy); color: white; padding: 25px 20px 60px; border-radius: 0 0 20px 20px;
+        }
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .client-name { font-weight: 700; font-size: 1.1rem; }
+        .live-badge { 
+            background: rgba(16, 185, 129, 0.2); color: #34d399; padding: 4px 10px; border-radius: 50px; 
+            font-size: 0.75rem; font-weight: bold; display: flex; align-items: center; gap: 5px; border: 1px solid rgba(16, 185, 129, 0.4);
+        }
+        .dot { width: 8px; height: 8px; background: #34d399; border-radius: 50%; animation: blink 1.5s infinite; }
+        
+        .date-filter { 
+            background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 8px; font-size: 0.9rem; 
+            display: flex; justify-content: space-between; align-items: center; cursor: pointer;
+        }
+
+        /* METRIC CARDS */
+        .metrics-container { padding: 0 20px; margin-top: -40px; display: grid; gap: 15px; }
+        
+        .main-card {
+            background: var(--card); padding: 20px; border-radius: 12px; 
+            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.1); text-align: center; border-bottom: 4px solid var(--gold);
+        }
+        .main-label { font-size: 0.9rem; color: #64748b; font-weight: 500; }
+        .main-value { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 5px 0; }
+        .trend { font-size: 0.85rem; color: var(--green); font-weight: 600; display: flex; justify-content: center; gap: 5px; align-items: center; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .sub-card { background: var(--card); padding: 15px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .sub-label { font-size: 0.8rem; color: #64748b; margin-bottom: 5px; }
+        .sub-value { font-size: 1.4rem; font-weight: 700; color: var(--navy); }
+        .sub-trend { font-size: 0.75rem; margin-top: 5px; }
+
+        /* DAILY BREAKDOWN */
+        .section-title { padding: 30px 20px 15px; font-weight: 700; color: var(--navy); font-size: 1.1rem; }
+        
+        .list-container { background: var(--card); margin: 0 20px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .list-item { 
+            padding: 15px; border-bottom: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center;
+        }
+        .item-date { font-weight: 600; font-size: 0.9rem; }
+        .item-detail { font-size: 0.8rem; color: #64748b; margin-top: 2px; }
+        .item-stat { text-align: right; }
+        .stat-main { font-weight: 700; color: var(--navy); }
+        .stat-sub { font-size: 0.75rem; color: #64748b; }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; width: 100%; background: white; padding: 15px;
+            display: flex; justify-content: space-around; border-top: 1px solid #e2e8f0;
+            z-index: 100;
+        }
+        .nav-item { text-align: center; color: #94a3b8; font-size: 0.75rem; }
+        .nav-item.active { color: var(--navy); font-weight: 600; }
+        .nav-icon { font-size: 1.5rem; margin-bottom: 2px; display: block; }
+
+        /* Back Button - Positioned above bottom nav */
+        .back-dashboard {
+            position: fixed;
+            bottom: 90px; /* Above the bottom nav bar */
+            left: 20px;
+            z-index: 2000;
+            background: rgba(15, 23, 42, 0.9);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex; align-items: center; gap: 8px;
+            transition: all 0.2s;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(4px);
+        }
+        .back-dashboard:hover { transform: translateY(-3px); background: var(--gold); }
+
+        /* WATERMARK STYLE */
+        .fixed-watermark {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            z-index: 1001;
+            opacity: 0.6;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+            border-right: 3px solid var(--gold);
+            padding-right: 15px;
+        }
+
+        .watermark-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #94a3b8;
+        }
+
+        .watermark-name {
+            font-family: 'Plus Jakarta Sans', serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+        
+        @media (max-width: 768px) {
+            .fixed-watermark { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-dashboard">
+        <i class="ph-bold ph-arrow-u-up-left"></i> Dashboard
+    </a>
+
+    <!-- Watermark -->
+    <div class="fixed-watermark">
+        <span class="watermark-label">Prepared by</span>
+        <span class="watermark-name">Aditya</span>
+    </div>
+
+    <div class="header">
+        <div class="top-bar">
+            <div class="client-name">Klinik Cantik Sehat</div>
+            <div class="live-badge"><div class="dot"></div> Live Update</div>
+        </div>
+        <div class="date-filter">
+            <span>📅 Bulan Ini (Jan 2026)</span>
+            <i class="ph-bold ph-caret-down"></i>
+        </div>
+    </div>
+
+    <div class="metrics-container">
+        <div class="main-card">
+            <div class="main-label">Estimasi Omzet (Gross)</div>
+            <div class="main-value">Rp 68.500.000</div>
+            <div class="trend"><i class="ph-bold ph-trend-up"></i> +12.5% vs Bulan Lalu</div>
+        </div>
+
+        <div class="grid-2">
+            <div class="sub-card">
+                <div class="sub-label">Total Leads (WA)</div>
+                <div class="sub-value">142</div>
+                <div class="sub-trend" style="color: var(--green);">+8 Hari ini</div>
+            </div>
+            <div class="sub-card">
+                <div class="sub-label">Ad Spend (Biaya)</div>
+                <div class="sub-value">Rp 4.2jt</div>
+                <div class="sub-trend" style="color: #64748b;">Rp 29rb / Lead</div>
+            </div>
+            <div class="sub-card">
+                <div class="sub-label">Booking Valid</div>
+                <div class="sub-value">34</div>
+                <div class="sub-trend" style="color: var(--gold);">Conv. Rate 24%</div>
+            </div>
+            <div class="sub-card">
+                <div class="sub-label">ROAS</div>
+                <div class="sub-value">16.3x</div>
+                <div class="sub-trend" style="color: var(--green);">Excellent</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-title">Performa Harian</div>
+    <div class="list-container">
+        <div class="list-item">
+            <div>
+                <div class="item-date">Hari Ini (Kamis)</div>
+                <div class="item-detail">Ad Spend: Rp 150.000</div>
+            </div>
+            <div class="item-stat">
+                <div class="stat-main">8 Leads</div>
+                <div class="stat-sub">2 Booking</div>
+            </div>
+        </div>
+        <div class="list-item">
+            <div>
+                <div class="item-date">Rabu, 7 Jan</div>
+                <div class="item-detail">Ad Spend: Rp 145.000</div>
+            </div>
+            <div class="item-stat">
+                <div class="stat-main">12 Leads</div>
+                <div class="stat-sub">4 Booking</div>
+            </div>
+        </div>
+        <div class="list-item">
+            <div>
+                <div class="item-date">Selasa, 6 Jan</div>
+                <div class="item-detail">Ad Spend: Rp 152.000</div>
+            </div>
+            <div class="item-stat">
+                <div class="stat-main">9 Leads</div>
+                <div class="stat-sub">3 Booking</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px; font-size: 0.8rem; color: #94a3b8;">
+        Data terintegrasi dengan Meta Ads & WhatsApp API.
+    </div>
+
+    <div class="bottom-nav">
+        <div class="nav-item active">
+            <i class="ph-fill ph-chart-pie-slice nav-icon"></i>
+            Dashboard
+        </div>
+        <div class="nav-item">
+            <i class="ph-bold ph-users nav-icon"></i>
+            Leads
+        </div>
+        <div class="nav-item">
+            <i class="ph-bold ph-gear nav-icon"></i>
+            Settings
+        </div>
+    </div>
+
+</body>
+</html>

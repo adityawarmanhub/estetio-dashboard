@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 2 Services - Estetio Expansion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --navy: #0f172a;
+            --blue-light: #e0f2fe;
+            --gold: #ca8a04;
+            --gold-light: #fef9c3;
+            --text: #334155;
+            --white: #ffffff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; color: var(--text); padding: 40px 20px; }
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        /* HEADER */
+        .header { text-align: center; margin-bottom: 60px; }
+        .badge { background: var(--navy); color: white; padding: 6px 15px; border-radius: 50px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin: 20px 0 10px; color: var(--navy); }
+        p.subtitle { color: #64748b; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+
+        /* STRATEGY DIAGRAM */
+        .timeline { 
+            display: flex; justify-content: center; gap: 20px; margin-bottom: 50px; align-items: center; 
+            background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .step { text-align: center; opacity: 0.5; }
+        .step.active { opacity: 1; transform: scale(1.1); font-weight: bold; color: var(--navy); }
+        .arrow { font-size: 1.5rem; color: #cbd5e1; }
+
+        /* SERVICE CARDS */
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
+        .card {
+            background: var(--white); border-radius: 16px; overflow: hidden;
+            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;
+            transition: transform 0.3s;
+        }
+        .card:hover { transform: translateY(-10px); border-color: var(--gold); }
+
+        .card-header { padding: 30px; background: var(--navy); color: white; position: relative; }
+        .icon-box { 
+            width: 60px; height: 60px; background: rgba(255,255,255,0.1); border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; font-size: 2rem; margin-bottom: 20px; color: var(--gold);
+        }
+        .card h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 5px; }
+        .tagline { font-size: 0.85rem; opacity: 0.8; font-style: italic; }
+
+        .card-body { padding: 30px; }
+        .problem-box { background: #fee2e2; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9rem; color: #991b1b; }
+        .solution-list { list-style: none; }
+        .solution-list li { display: flex; gap: 10px; margin-bottom: 12px; font-size: 0.95rem; color: #475569; }
+        .check { color: var(--gold); font-weight: bold; }
+
+        .revenue-badge {
+            background: var(--gold-light); color: #854d0e; padding: 10px; border-radius: 8px;
+            text-align: center; font-weight: bold; font-size: 0.9rem; margin-top: 20px; border: 1px solid var(--gold);
+        }
+
+        /* FOOTER NOTE */
+        .footer-note {
+            margin-top: 50px; padding: 20px; background: #f0f9ff; border-left: 4px solid #0ea5e9; color: #0c4a6e; border-radius: 8px;
+        }
+
+        /* Back Button - Positioned above bottom nav */
+        .back-dashboard {
+            position: fixed;
+            bottom: 30px; 
+            left: 20px;
+            z-index: 2000;
+            background: rgba(15, 23, 42, 0.9);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: flex; align-items: center; gap: 8px;
+            transition: all 0.2s;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(4px);
+        }
+        .back-dashboard:hover { transform: translateY(-3px); background: var(--gold); }
+
+        /* WATERMARK STYLE */
+        .fixed-watermark {
+            position: fixed;
+            bottom: 30px;
+            right: 20px;
+            z-index: 1001;
+            opacity: 0.6;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+            border-right: 3px solid var(--gold);
+            padding-right: 15px;
+        }
+
+        .watermark-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #94a3b8;
+        }
+
+        .watermark-name {
+            font-family: 'Plus Jakarta Sans', serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+        
+        @media (max-width: 768px) {
+            .timeline { flex-direction: column; gap: 10px; }
+            .arrow { transform: rotate(90deg); }
+            .fixed-watermark { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-dashboard">
+        <i class="ph-bold ph-arrow-u-up-left"></i> Dashboard
+    </a>
+
+    <!-- Watermark -->
+    <div class="fixed-watermark">
+        <span class="watermark-label">Prepared by</span>
+        <span class="watermark-name">Aditya</span>
+    </div>
+
+    <div class="container">
+        
+        <div class="header">
+            <span class="badge">Internal Strategy Deck</span>
+            <h1>Phase 2: Retention & Authority</h1>
+            <p class="subtitle">
+                Strategi "Upsell" untuk Bulan ke-4. Fokus berpindah dari mencari pasien baru (Acquisition) menjadi memaksimalkan pasien lama (Lifetime Value).
+            </p>
+        </div>
+
+        <div class="timeline">
+            <div class="step">
+                <div>PHASE 1</div>
+                <div style="font-size: 0.8rem;">Month 1-3</div>
+                <div>Acquisition</div>
+            </div>
+            <div class="arrow"><i class="ph-bold ph-arrow-right"></i></div>
+            <div class="step active">
+                <div>PHASE 2</div>
+                <div style="font-size: 0.8rem;">Month 4+</div>
+                <div>Retention & Authority</div>
+            </div>
+            <div class="arrow"><i class="ph-bold ph-arrow-right"></i></div>
+            <div class="step">
+                <div>PHASE 3</div>
+                <div style="font-size: 0.8rem;">Year 1+</div>
+                <div>Franchise/Scale</div>
+            </div>
+        </div>
+
+        <div class="service-grid">
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon-box"><i class="ph-fill ph-map-pin"></i></div>
+                    <h3>GMB Domination</h3>
+                    <div class="tagline">Local SEO Optimization</div>
+                </div>
+                <div class="card-body">
+                    <div class="problem-box">
+                        <strong>Masalah Klien:</strong><br>
+                        "Iklan IG mahal, tapi yang datang sedikit. Kalah saing sama klinik sebelah yang ratingnya banyak."
+                    </div>
+                    <ul class="solution-list">
+                        <li><i class="ph-bold ph-check check"></i> <strong>SEO Title Hack:</strong> Optimasi kata kunci "Klinik Jerawat Terdekat".</li>
+                        <li><i class="ph-bold ph-check check"></i> <strong>Geo-Tagging Photos:</strong> Upload foto mingguan agar Google mendeteksi aktivitas.</li>
+                        <li><i class="ph-bold ph-check check"></i> <strong>Review Generation:</strong> Sistem QR Code & Script Kasir untuk panen bintang 5.</li>
+                    </ul>
+                    <div class="revenue-badge">Target: Free Organic Traffic</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon-box"><i class="ph-fill ph-whatsapp-logo"></i></div>
+                    <h3>WA Reactivation</h3>
+                    <div class="tagline">Database Loyalty System</div>
+                </div>
+                <div class="card-body">
+                    <div class="problem-box">
+                        <strong>Masalah Klien:</strong><br>
+                        "Pasien cuma datang sekali pas promo, habis itu hilang gak balik lagi (Churn)."
+                    </div>
+                    <ul class="solution-list">
+                        <li><i class="ph-bold ph-check check"></i> <strong>Data Mining:</strong> Menggali data Excel pasien yang "tidur" >3 bulan.</li>
+                        <li><i class="ph-bold ph-check check"></i> <strong>Personal Blast:</strong> Script sapaan personal (Bukan broadcast spam).</li>
+                        <li><i class="ph-bold ph-check check"></i> <strong>Birthday Promo:</strong> Otomatisasi ucapan ulang tahun + Voucher khusus.</li>
+                    </ul>
+                    <div class="revenue-badge">Target: Instant Cash Injection</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="icon-box"><i class="ph-fill ph-headset"></i></div>
+                    <h3>Admin Coaching</h3>
+                    <div class="tagline">Human Resource Training</div>
+                </div>
+                <div class="card-body">
+                    <div class="problem-box">
+                        <strong>Masalah Klien:</strong><br>
+                        "Leads masuk banyak dari iklan, tapi Admin jutek/lambat balas. Closing rate rendah."
+                    </div>
+                    <ul class="solution-list">
+                        <li><i class="ph-bold ph-check check"></i> <strong>Mystery Caller:</strong> Audit rahasia kualitas pelayanan admin.</li>
+                        <li><i class="ph-bold ph-check check"></i> <strong>Handling Objection:</strong> Training cara jawab "Kok Mahal?" menjadi closing.</li>
+                        <li><i class="ph-bold ph-check check"></i> <strong>Monthly Report:</strong> Raport kinerja SDM Front Office.</li>
+                    </ul>
+                    <div class="revenue-badge">Target: High Conversion Rate</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-note">
+            <strong>💡 Strategic Insight untuk Founder:</strong><br>
+            Jangan jual layanan ini di Bulan ke-1. Gunakan ini sebagai "Senjata Rahasia" (Upsell) saat klien mulai merasa iklan di Bulan ke-4 agak mahal (Ad Fatigue). Saat itulah kita bilang: <em>"Tenang Dok, kita punya Plan B: Garap Pasien Lama."</em>
+        </div>
+
+    </div>
+
+</body>
+</html>
